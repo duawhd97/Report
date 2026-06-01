@@ -790,28 +790,18 @@ footer {
   <div class="container">
     <div class="section-header reveal">
       <div class="section-number">SECTION 03</div>
-      <h2 class="headline-md">개편 방향 — AIMS SaaS를 AIR 플랫폼으로 재편</h2>
-      <p>기존 AIMS SaaS의 기능을 목적별로 재분류하고, 온톨로지 기반 인텔리전스 대시보드를 얹는 구조입니다. 새로 만드는 것이 아니라, 기존 기능을 재구성합니다.</p>
+      <h2 class="headline-md">개편 방향 — AIMS SaaS 기능 재분류 + Sub Application 확장</h2>
+      <p>AIMS SaaS의 기존 기능을 목적별로 재분류하고, Map Studio와 AI Dashboard를 Sub Application으로 제공합니다. AIMS SaaS 자체를 바꾸는 것이 아니라, 위에 Sub App을 얹는 구조입니다.</p>
     </div>
-
     <div class="air-arch reveal">
-      <div class="air-top-block">
-        <h3>AIR — Overview Dashboard</h3>
-        <div class="air-features">
-          <span class="air-feat">Widget Panel — Role별 KPI 위젯 자동 분기 (IT Manager / Store Manager / Category Manager / HQ Manager)</span>
-          <span class="air-feat">Map View — Viewport + Viewport Control (Map Studio Lib 기반, Role별 레이어 토글)</span>
-          <span class="air-feat">AI Assistant — Ontology + GraphRAG + LLM 기반 자연어 질의 및 물리 액션 실행</span>
-        </div>
-      </div>
 
-      <div class="air-arrow-group"><span class="arr">↑</span> 모든 Sub App의 데이터를 온톨로지로 연결하여 통합 조회 <span class="arr">↑</span></div>
-
-      <div class="air-mid-section">
-        <div class="air-mid-label">기본 제공 — AIMS SaaS 기존 메뉴 재구성</div>
+      <div class="air-mid-section" style="padding-top:0;">
+        <div class="air-mid-label">기본 제공 Sub Apps</div>
         <div class="air-sub-grid">
-          <div class="air-sub-card">
-            <h4>Map Studio</h4>
-            <p>Floor Plan 기반 도면 생성 및 관리. Map Viewer 라이브러리를 다른 Sub App에 제공하여 위치 기반 시각화 지원.</p>
+          <div class="air-sub-card" style="border-top:3px solid var(--primary);">
+            <h4>AIR (AI for Retail)</h4>
+            <p>Map Studio + AI Dashboard. 과금 구조에 따라 Map Studio만 제공하거나, Map Studio + AI Dashboard를 함께 제공합니다.</p>
+            <p style="font-size:11px;color:var(--primary);margin-top:6px;font-weight:600;">전제 조건 : Vision 또는 Power Rail (UWB) 사용 필수</p>
             <span class="sub-tag default">기본 제공</span>
           </div>
           <div class="air-sub-card">
@@ -825,7 +815,6 @@ footer {
             <span class="sub-tag default">기본 제공</span>
           </div>
         </div>
-
         <div class="air-mid-label">부가 서비스 — 확장 Sub Application</div>
         <div class="air-sub-grid">
           <div class="air-sub-card dashed">
@@ -846,12 +835,25 @@ footer {
         </div>
       </div>
 
-      <div class="air-arrow-group"><span class="arr">↑</span> 기본 제공 Sub App은 현재 AIMS SaaS 메뉴의 재구성 <span class="arr">↑</span></div>
+      <div style="margin-bottom:24px;">
+        <h3 style="font-size:16px;font-weight:600;text-align:center;margin-bottom:14px;color:var(--on-surface);">AIR 서비스 활성화 구조</h3>
+        <table class="change-table">
+          <thead><tr><th>구분</th><th>Vision / Power Rail 사용자 (AIR 미과금)</th><th>AIR 과금 사용자</th></tr></thead>
+          <tbody>
+            <tr><td style="font-weight:600;color:var(--on-surface);">전제 조건</td><td>Vision 또는 Power Rail (UWB) 사용</td><td>Vision 또는 Power Rail (UWB) 사용</td></tr>
+            <tr><td style="font-weight:600;color:var(--on-surface);">Map Studio (Map Generate + Management)</td><td><span class="status-badge keep">활성화</span></td><td><span class="status-badge keep">활성화</span></td></tr>
+            <tr><td style="font-weight:600;color:var(--on-surface);">Dashboard (Map View + Widget)</td><td><span class="status-badge keep">활성화</span></td><td><span class="status-badge keep">활성화</span></td></tr>
+            <tr><td style="font-weight:600;color:var(--on-surface);">AI Agent (Ontology + GraphRAG + LLM)</td><td style="color:var(--on-surface-variant);">—</td><td><span class="status-badge new">활성화</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="air-arrow-group"><span class="arr">↑</span> Sub Application은 AIMS SaaS 위에 올라가는 확장 서비스 <span class="arr">↑</span></div>
 
       <div class="air-bottom-block">
         <h3>Base (= AIMS SaaS 코어 인프라)</h3>
-        <p>Platform Settings : Login/SSO · ACL/권한 · Company-Store 구조 · Third Party 관리 · API 관리 · Role Mapping</p>
-        <div class="base-label">→ 플랫폼이 동작하기 위한 최소 기반</div>
+        <p>AIMS SaaS 기존 기능을 목적별로 재분류. Login/SSO · ACL/권한 · Company-Store 구조 · Third Party 관리 · API 관리 · Role Mapping</p>
+        <div class="base-label">→ AIMS SaaS는 그대로 유지. 기능을 재분류하고, 위에 Sub App을 얹는 구조.</div>
       </div>
     </div>
   </div>
@@ -920,9 +922,8 @@ footer {
     <div class="section-header reveal">
       <div class="section-number">SECTION 05</div>
       <h2 class="headline-md">Before / After — 한눈에 보는 변화</h2>
-      <p>AIMS SaaS를 AIR 플랫폼으로 재편합니다. 새로 만드는 것이 아니라, 기존 기능을 목적별로 재구성합니다.</p>
+      <p>AIMS SaaS는 그대로 유지하면서 기능을 재분류하고, Sub Application으로 확장합니다.</p>
     </div>
-
     <div class="comparison reveal">
       <div class="comp-side comp-before">
         <h4>Before — AIMS SaaS</h4>
@@ -944,28 +945,25 @@ footer {
         <div class="comp-item" style="background:rgba(231,96,103,.15);">데이터 단절 — 서비스 간 연결 없음</div>
         <div class="comp-item" style="background:rgba(231,96,103,.15);">목적 불명확 — 뭘 하려고 들어왔는지 메뉴에서 안 보임</div>
       </div>
-
       <div class="comp-arrow">→</div>
-
       <div class="comp-side comp-after">
-        <h4>After — AIR Platform</h4>
-        <div class="comp-section-label">Base — 플랫폼 코어 인프라</div>
+        <h4>After — AIMS SaaS + Sub Apps</h4>
+        <div class="comp-section-label">AIMS SaaS (Base) — 기능 재분류</div>
         <div class="comp-item">Login/SSO · ACL/권한 · Company-Store</div>
         <div class="comp-item">Third Party 관리 · API 관리 · Role Mapping</div>
+        <div class="comp-item">기존 메뉴를 목적별로 재분류 (디바이스별 → 목적별)</div>
         <div class="comp-section-label">기본 제공 Sub Apps</div>
-        <div class="comp-item" style="border-left:3px solid #6058B4;">Map Studio — 도면 기반 맵 생성 · 관리 · Lib 제공</div>
+        <div class="comp-item" style="border-left:3px solid #4D469A;">AIR — Map Studio + Dashboard (Vision/Power Rail 시 활성화), AI Agent (AIR 과금 시 추가)</div>
         <div class="comp-item" style="border-left:3px solid #6058B4;">Layout Designer — Article 편집기</div>
         <div class="comp-item" style="border-left:3px solid #6058B4;">Device Management — 목적별 분류 (가격표시 · 모니터링 · 광고 · 네트워크 · 인프라)</div>
         <div class="comp-section-label">부가 Sub Apps</div>
         <div class="comp-item" style="border-left:3px dashed #3e9bca;">CMS — EPD/LCD 송출 · 스케줄링</div>
         <div class="comp-item" style="border-left:3px dashed #3e9bca;">RMN — 광고 매체 · 과금 · 리포트</div>
         <div class="comp-item" style="border-left:3px dashed #3e9bca;">++ 추가 확장 가능</div>
-        <div class="comp-section-label">AIR Overview Dashboard</div>
-        <div class="comp-item" style="border-left:3px solid #333; font-weight:600;">Widget (Role별) + Map View + AI Assistant</div>
         <div class="comp-section-label" style="margin-top:16px;">결과</div>
         <div class="comp-item" style="background:rgba(53,161,66,.15);font-weight:600;">목적별 독립 UX — 각 Sub App이 명확한 역할</div>
         <div class="comp-item" style="background:rgba(53,161,66,.15);font-weight:600;">온톨로지 기반 데이터 연결 — 크로스 도메인 추론 가능</div>
-        <div class="comp-item" style="background:rgba(53,161,66,.15);font-weight:600;">기존 기능 재활용 — 새로 만드는 것이 아님</div>
+        <div class="comp-item" style="background:rgba(53,161,66,.15);font-weight:600;">AIMS SaaS는 그대로, Sub App으로 확장</div>
       </div>
     </div>
   </div>
