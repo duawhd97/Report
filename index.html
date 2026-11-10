@@ -1,1027 +1,188 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AIMS SaaS Improvement Plan</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
+<html lang="ko"><head><meta charset="utf-8">
+<title>ESL Whitelist Process · 회의자료</title>
 <style>
-/* ============================================================
-   DESIGN TOKENS — Solum Design System
-   ============================================================ */
-:root {
-  /* Brand */
-  --brand-500: #4D469A;
-  --brand-400: #6058B4;
-  --brand-300: #7B74C4;
-  --brand-200: #9791D4;
-  --brand-100: #B5B1E2;
-  --brand-50:  #E8E6F8;
-  --brand-25:  #F5F4FD;
+@page { size: A4 landscape; margin: 11mm; }
+* { box-sizing: border-box; }
+html { background:#eef0f4; }
+body { font-family: 'Pretendard','Noto Sans CJK KR','Malgun Gothic','맑은 고딕',sans-serif; color:#1f2a37; font-size: 9pt; margin:0 auto; max-width:1240px; padding:24px 0 40px; }
+.page { background:#fff; padding:26px 30px 30px; margin-bottom:22px; border-radius:10px; box-shadow:0 2px 10px rgba(20,30,50,.08); }
+.hdr { display:flex; align-items:flex-end; justify-content:space-between; border-bottom: 2.5px solid #4b2a7b; padding-bottom:4px; margin-bottom:10px; }
+.hdr .sec { font-size:9pt; color:#7030A0; font-weight:700; letter-spacing:.5px; }
+.hdr h1 { font-size:17pt; margin:0; color:#1b2433; }
+.hdr .sub { font-size:8.5pt; color:#6b7280; text-align:right; }
+.foot { margin-top:14px; font-size:8pt; color:#9ca3af; }
+/* page 1 */
+.cond { display:flex; align-items:stretch; gap:8px; margin-bottom:10px; }
+.cond .lbl { width:80px; background:#D9D9D9; font-weight:700; display:flex; align-items:center; justify-content:center; text-align:center; font-size:9.5pt; border-radius:4px; }
+.cbox { flex:1; border:1px solid #c9ced6; border-radius:4px; overflow:hidden; }
+.cbox .t { color:#fff; font-weight:700; text-align:center; padding:4px; font-size:9.5pt; }
+.cbox .b { padding:8px 11px; font-size:9.6pt; line-height:1.65; }
+.op { font-size:24pt; font-weight:700; display:flex; align-items:center; color:#4b5563; }
+.wl { width:150px; border:2px solid #7030A0; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:16pt; font-weight:800; color:#4b2a7b; text-align:center; line-height:1.15; background:#f6f0fb; }
+table.grid { width:100%; border-collapse:collapse; }
+table.grid td { border:1px solid #9aa3ae; text-align:center; vertical-align:middle; padding:3px 2px; font-size:7.6pt; word-break:keep-all; white-space:nowrap; }
+table.grid .rh { background:#D9D9D9; font-weight:700; font-size:8.2pt; text-align:left; padding-left:5px; }
+.stage { background:#7030A0; color:#fff; font-weight:700; font-size:8.6pt !important; }
+.scan { background:#00B050; color:#fff; font-weight:700; font-size:8.4pt !important; }
+.y { background:#FFFF00; font-weight:700; } .o { background:#FFC000; font-weight:700; }
+.g { background:#92D050; font-weight:700; } .bl { background:#8EB4E3; font-weight:700; }
+.blank { background:#f3f4f6; }
+.ex { font-size:7pt !important; color:#374151; }
+.sm { font-weight:400; font-size:7pt; }
+.note { margin-top:9px; font-size:8.6pt; color:#6b7280; }
+.hint { font-size:8.8pt; color:#4b5563; margin:2px 0 6px; display:flex; align-items:center; gap:10px; }
+.btn { font-family:inherit; font-size:8pt; border:1px solid #7030A0; color:#7030A0; background:#fff; border-radius:4px; padding:2px 9px; cursor:pointer; }
+.btn:hover { background:#f6f0fb; }
+.stage { cursor:pointer; transition:filter .15s; }
+.stage:hover { filter:brightness(1.2); }
+#lc td { transition:opacity .2s, box-shadow .2s; }
+#lc.sel td[data-s].dim { opacity:.18; }
+#lc.sel td.hl { box-shadow:inset 0 0 0 2px #e11d48; }
+#lc.sel td.stage.on { background:#e11d48; }
+#lc.sel td.blank.hl, #lc.sel td.hl:empty { box-shadow:none; }
+.applink { display:inline-block; margin-top:3px; color:#fff !important; background:#ea580c; border-radius:4px; padding:1px 7px; font-size:7.6pt; text-decoration:none; font-weight:700; white-space:nowrap; }
+.applink.big { font-size:9pt; padding:3px 10px; margin-bottom:4px; }
+.applink:hover { background:#c2410c; }
+/* page 2 */
+.flowwrap { border:1px solid #d6d9e0; border-radius:8px; padding:14px 14px 12px; background:#fafbfd; }
+.flowtitle { text-align:center; color:#1f5fae; font-weight:700; font-size:10.5pt; margin-bottom:8px; }
+.notes { margin-top:12px; display:flex; gap:12px; }
+.notes .card { flex:1; border:1px solid #d6d9e0; border-radius:6px; padding:8px 11px; background:#fff; }
+.notes h3 { margin:0 0 5px; font-size:9.5pt; color:#4b2a7b; }
+.notes ul { margin:0; padding-left:15px; font-size:9.2pt; line-height:1.6; }
+.notes a { color:#c2410c; font-weight:700; }
+/* page 3 */
+table.pol { width:100%; border-collapse:collapse; table-layout:fixed; }
+table.pol th { background:#4b2a7b; color:#fff; font-size:9pt; padding:6px; border:1px solid #4b2a7b; text-align:left; }
+table.pol th.disc { background:#b45309; border-color:#b45309; }
+table.pol th.memo { background:#6b7280; border-color:#6b7280; }
+table.pol td { border:1px solid #b7bec8; vertical-align:top; padding:9px 8px; font-size:9pt; line-height:1.55; height:95px; }
+table.pol td.case { font-weight:700; background:#f3eef9; }
+table.pol td.disc { background:#fff8eb; }
+.num { flex:0 0 15px; font-weight:700; color:#4b2a7b; }
+.disc .num { color:#b45309; }
+.li { margin-bottom:4px; display:flex; }
+@media print { html{background:#fff} body{padding:0;max-width:none} .page{box-shadow:none;padding:0;margin:0;border-radius:0;page-break-after:always} .hint{display:none} }
+</style></head><body>
 
-  /* Neutral */
-  --neutral-25:  #FAFAFA;
-  --neutral-50:  #F5F5F5;
-  --neutral-100: #EBEBEB;
-  --neutral-150: #E0E0E0;
-  --neutral-200: #D0D0D0;
-  --neutral-300: #ABABAB;
-  --neutral-400: #858585;
-  --neutral-500: #636363;
-  --neutral-600: #484848;
-  --neutral-700: #333333;
-  --neutral-800: #222222;
-  --neutral-900: #161616;
+<div class="page">
+  <div class="hdr">
+    <div><div class="sec">01 · 공유</div><h1>Whitelist 기반 ESL Life Cycle Process</h1></div>
+    <div class="sub">출처: Whitelist_Process.xlsx › Whitelist Tab (1~11행)</div>
+  </div>
+  <div class="cond">
+    <div class="lbl"><div>Whitelist<br>성립 조건</div></div>
+    <div class="cbox"><div class="t" style="background:#404040">생산 · 포장 · 출하 정보</div>
+      <div class="b"><b>Label 식별 정보</b> : MAC ID<br><b>생산 정보</b> : Product Model / Production Site / Production Date<br><b>포장 정보</b> : Outer Box ID / Inner Box ID</div></div>
+    <div class="op">+</div>
+    <div class="cbox" style="flex:.75"><div class="t" style="background:#4F81BD">최종 고객 정보</div>
+      <div class="b"><b>Customer 정보</b> : Customer Code<br><b>Store 정보</b> : Store Code<br>(Shop-in-Shop Case)</div></div>
+    <div class="op">=</div>
+    <div class="wl"><div>Label<br>Whitelist</div></div>
+  </div>
+  <div class="hint">▸ <b>제품 이동 단계</b>를 클릭하면 해당 단계의 Scan 시점 · 데이터 생성 단계 · 주요 데이터 · 데이터 예시가 하이라이트됩니다 (다시 클릭 시 해제). <button id="reset" class="btn">전체 보기</button></div><table class="grid" id="lc"><tr style="height:70px"><td class="rh">제품 이동<br>단계</td><td class="stage" data-s="1" data-stage="1" colspan="1">1. 발주</td><td class="stage" data-s="2" data-stage="2" colspan="2">2. 생산</td><td class="stage" data-s="3" data-stage="3" colspan="4">3. 포장</td><td class="stage" data-s="4" data-stage="4" colspan="2">4. 출하</td><td class="stage" data-s="5" data-stage="5" colspan="1">5. 중간 거점<br>도착<br><span class="sm">(법인·창고·<br>유통사·리셀러)</span></td><td class="stage" data-s="6" data-stage="6" colspan="1">6. 최종<br>고객 인도</td><td class="stage" data-s="7" data-stage="7" colspan="3">7. 설치 / 운영</td><td class="stage" data-s="8" data-stage="8" colspan="4">8. RMA / 재출고</td></tr><tr style="height:50px"><td class="rh">Scan 시점</td><td class="" data-s="1"></td><td class="" data-s="2" colspan="2"></td><td class="" data-s="3" colspan="4"></td><td class="scan" data-s="4 5 6" colspan="4">Box Scan (Whitelist 등록)<br><a class="applink" href="https://tree-ego-86859481.figma.site" target="_blank" rel="noopener">Box Scan App ↗</a></td><td class="" data-s="7" colspan="3"></td><td class="scan" data-s="8" colspan="4">Box Scan<br>(RMA 등록)</td></tr><tr style="height:40px"><td class="rh">데이터<br>생성 단계</td><td class="blank" data-s="1" rowspan="5"></td><td class="y" data-s="2 3 4" colspan="8">1. 생산 · 포장 · 출하</td><td class="o" data-s="5 6" colspan="2">2. 고객 정보 매핑 /<br>인도 / 설치</td><td class="g" data-s="7" colspan="3">3. ESL 운영</td><td class="bl" data-s="8" colspan="4">4. RMA</td></tr><tr style="height:70px"><td class="rh">주요 데이터<br>(단계별로 누적)</td><td class="y" data-s="2">MAC ID</td><td class="y" data-s="2">Product<br>Model</td><td class="y" data-s="3">Production<br>Site</td><td class="y" data-s="3">Production<br>Date</td><td class="y" data-s="3">Outer<br>Box ID</td><td class="y" data-s="3">Inner<br>Box ID</td><td class="y" data-s="4">Invoice<br>No.</td><td class="y" data-s="4">Arrival</td><td class="o" data-s="5">Customer<br>Code</td><td class="o" data-s="6">Store<br>Code<br>(Optional)</td><td class="g" data-s="7">First<br>Activation</td><td class="g" data-s="7">Battery<br>Status</td><td class="g" data-s="7">Alive<br>Status</td><td class="bl" data-s="8">RMA<br>No.</td><td class="bl" data-s="8">RMA<br>Received<br>Date</td><td class="bl" data-s="8">RMA<br>Status</td><td class="bl" data-s="8">RMA<br>Completed<br>Date</td></tr><tr style="height:56px"><td class="rh" rowspan="3">데이터<br>예시</td><td class="ex" data-s="2">0CD53CE7739F</td><td class="ex" data-s="2">Newton AIR<br>6C 2.1"</td><td class="ex" data-s="3">DKE (OEM)</td><td class="ex" data-s="3">2026-11-01</td><td class="ex" data-s="3">0263N00092</td><td class="ex" data-s="3">I263680445</td><td class="ex" data-s="4">EHQ20260827001</td><td class="ex" data-s="4">EHQ</td><td class="ex" data-s="5">EU-AST-GER-<br>ROSS-24SEWS</td><td class="ex" data-s="6">30545</td><td class="ex" data-s="7">YYYY-MM-DD<br>00:00:00</td><td class="ex" data-s="7">0F~1F</td><td class="ex" data-s="7">Online /<br>Offline</td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td></tr><tr style="height:38px"><td class="ex" data-s="2"></td><td class="ex" data-s="2"></td><td class="ex" data-s="3">New Face<br>(OEM)</td><td class="ex" data-s="3"></td><td class="ex" data-s="3"></td><td class="ex" data-s="3"></td><td class="ex" data-s="4"></td><td class="ex" data-s="4">ROSSMANN</td><td class="ex" data-s="5"></td><td class="ex" data-s="6"></td><td class="ex" data-s="7"></td><td class="ex" data-s="7"></td><td class="ex" data-s="7"></td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td></tr><tr style="height:38px"><td class="ex" data-s="2"></td><td class="ex" data-s="2"></td><td class="ex" data-s="3">Xingtai<br>(OEM)</td><td class="ex" data-s="3"></td><td class="ex" data-s="3"></td><td class="ex" data-s="3"></td><td class="ex" data-s="4"></td><td class="ex" data-s="4">Disti</td><td class="ex" data-s="5"></td><td class="ex" data-s="6"></td><td class="ex" data-s="7"></td><td class="ex" data-s="7"></td><td class="ex" data-s="7"></td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td></tr></table>
+  <div class="note">※ Box Scan(Whitelist 등록)은 4. 출하 ~ 6. 최종 고객 인도 구간, Box Scan(RMA 등록)은 8. RMA / 재출고 단계에서 수행</div>
+</div>
 
-  /* Semantic */
-  --primary:            var(--brand-500);
-  --surface:            var(--neutral-50);
-  --surface-bright:     #FFFFFF;
-  --surface-container:  var(--neutral-100);
-  --on-surface:         var(--neutral-900);
-  --on-surface-variant: var(--neutral-500);
-  --outline:            var(--neutral-200);
-
-  /* Status */
-  --error:   #E76067;
-  --warning: #E06418;
-  --success: #35A142;
-  --info:    #3E9BCA;
-  --teal:    #1FBDB3;
-
-  --red-100:    #FDEAEB;
-  --orange-100: #FEF0E6;
-  --green-100:  #ECF8ED;
-  --blue-100:   #E6F4FA;
-
-  /* Elevation */
-  --elevation-1: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
-  --elevation-2: 0 4px 12px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.04);
-  --elevation-3: 0 8px 24px rgba(0,0,0,.10), 0 4px 8px rgba(0,0,0,.06);
-
-  /* Radius */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-
-  /* Transition */
-  --transition-fast: .18s ease;
-  --transition-base: .3s ease;
-}
-
-/* Dark Mode Overrides */
-[data-theme="dark"] {
-  --primary:            var(--brand-300);
-  --surface:            #1A1A2E;
-  --surface-bright:     #242440;
-  --surface-container:  #2A2A48;
-  --on-surface:         #EAEAF0;
-  --on-surface-variant: #9898B0;
-  --outline:            #404060;
-  --brand-25:           #1E1E36;
-  --brand-50:           #2A2A48;
-  --neutral-50:         #1A1A2E;
-  --neutral-100:        #2A2A48;
-}
-
-/* ============================================================
-   RESET & BASE
-   ============================================================ */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 72px; }
-body {
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--on-surface);
-  background: var(--surface);
-  transition: background var(--transition-base), color var(--transition-base);
-}
-
-/* ============================================================
-   NAVIGATION
-   ============================================================ */
-.nav {
-  position: sticky; top: 0; z-index: 100;
-  background: var(--surface-bright);
-  border-bottom: 1px solid var(--outline);
-  backdrop-filter: blur(12px);
-  transition: background var(--transition-base), border var(--transition-base);
-}
-.nav-inner {
-  max-width: 1200px; margin: 0 auto;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 14px 24px;
-}
-.nav-logo {
-  font-size: 18px; font-weight: 600; color: var(--primary);
-  display: flex; align-items: center; gap: 8px;
-  text-decoration: none;
-}
-.nav-logo .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); }
-.nav-links { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
-.nav-links a {
-  font-size: 14px; font-weight: 400; color: var(--on-surface-variant);
-  text-decoration: none; padding: 6px 14px; border-radius: var(--radius-sm);
-  transition: all var(--transition-fast);
-}
-.nav-links a:hover, .nav-links a.active {
-  color: var(--primary); background: var(--brand-50);
-}
-.theme-toggle {
-  width: 42px; height: 24px; border-radius: 12px;
-  background: var(--neutral-200); border: none; cursor: pointer;
-  position: relative; transition: background var(--transition-fast);
-  flex-shrink: 0;
-}
-.theme-toggle::after {
-  content: '☀️'; font-size: 13px;
-  position: absolute; top: 2px; left: 2px;
-  width: 20px; height: 20px; border-radius: 50%;
-  background: var(--surface-bright);
-  box-shadow: var(--elevation-1);
-  display: flex; align-items: center; justify-content: center;
-  transition: all var(--transition-fast);
-}
-[data-theme="dark"] .theme-toggle { background: var(--brand-400); }
-[data-theme="dark"] .theme-toggle::after { left: 20px; content: '🌙'; }
-
-/* ============================================================
-   LAYOUT
-   ============================================================ */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-section { padding: 80px 0; }
-
-/* ============================================================
-   TYPOGRAPHY
-   ============================================================ */
-.headline-lg { font-size: 32px; line-height: 1.125; font-weight: 600; }
-.headline-md { font-size: 28px; line-height: 1.14; font-weight: 600; }
-.headline-sm { font-size: 24px; line-height: 1.17; font-weight: 600; }
-.text-xl { font-size: 20px; line-height: 1.3; }
-.text-lg { font-size: 18px; line-height: 1.33; }
-.text-md { font-size: 16px; line-height: 1.375; }
-.text-sm { font-size: 14px; line-height: 1.43; }
-.text-xs { font-size: 12px; line-height: 1.17; }
-
-/* ============================================================
-   SECTION HEADERS
-   ============================================================ */
-.section-header { margin-bottom: 48px; text-align: center; }
-.section-number {
-  display: inline-block; font-size: 12px; font-weight: 600;
-  color: var(--primary); background: var(--brand-50);
-  padding: 4px 14px; border-radius: 20px; margin-bottom: 16px;
-  letter-spacing: .5px;
-}
-.section-header h2 { margin-bottom: 12px; color: var(--on-surface); }
-.section-header p { color: var(--on-surface-variant); max-width: 640px; margin: 0 auto; }
-
-/* ============================================================
-   ANIMATION — fade-in on scroll
-   ============================================================ */
-.reveal {
-  opacity: 0; transform: translateY(30px);
-  transition: opacity .6s ease, transform .6s ease;
-}
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
-/* ============================================================
-   HERO
-   ============================================================ */
-.hero {
-  padding: 100px 0 80px;
-  text-align: center;
-  background: linear-gradient(168deg, var(--brand-25) 0%, var(--surface) 60%);
-}
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 13px; font-weight: 600; color: var(--primary);
-  background: var(--brand-50); border: 1px solid var(--brand-100);
-  padding: 6px 16px; border-radius: 20px; margin-bottom: 24px;
-}
-.hero h1 {
-  font-size: 40px; line-height: 1.2; font-weight: 600;
-  color: var(--on-surface); margin-bottom: 16px;
-}
-.hero h1 span { color: var(--primary); }
-.hero p { font-size: 18px; color: var(--on-surface-variant); max-width: 580px; margin: 0 auto 36px; }
-.hero-chips { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-.hero-chip {
-  font-size: 13px; padding: 6px 16px; border-radius: 20px;
-  background: var(--surface-bright); border: 1px solid var(--outline);
-  color: var(--on-surface-variant);
-}
-
-/* ============================================================
-   BUILDING DIAGRAM
-   ============================================================ */
-.building-wrap {
-  display: flex; gap: 48px; align-items: flex-start;
-  flex-wrap: wrap; justify-content: center;
-}
-.building {
-  width: 420px; flex-shrink: 0;
-  display: flex; flex-direction: column; gap: 0;
-}
-.building-layer {
-  padding: 20px 24px;
-  border: 1px solid var(--outline);
-  background: var(--surface-bright);
-  position: relative;
-  transition: all var(--transition-fast);
-  cursor: default;
-}
-.building-layer:first-child { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
-.building-layer:last-child  { border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
-.building-layer + .building-layer { border-top: none; }
-.building-layer:hover {
-  z-index: 2; box-shadow: var(--elevation-2);
-  border-color: var(--brand-200);
-}
-.building-layer.highlight {
-  background: var(--brand-50);
-  border-color: var(--brand-300);
-  box-shadow: inset 0 0 0 2px var(--brand-200);
-}
-/* .building-layer.highlight::after {
-  content: '← 여기를 바꿉니다!';
-  position: absolute; right: -150px; top: 50%; transform: translateY(-50%);
-  font-size: 13px; font-weight: 600; color: var(--primary);
-  background: var(--brand-50); padding: 4px 12px; border-radius: var(--radius-sm);
-  border: 1px solid var(--brand-200); white-space: nowrap;
-} */
-.layer-icon { font-size: 20px; margin-bottom: 4px; }
-.layer-title { font-size: 15px; font-weight: 600; color: var(--on-surface); }
-.layer-desc  { font-size: 13px; color: var(--on-surface-variant); margin-top: 2px; }
-.layer-analogy {
-  font-size: 12px; color: var(--brand-400);
-  margin-top: 4px; font-weight: 600;
-}
-
-.building-connector {
-  display: flex; flex-direction: column; align-items: center;
-  padding: 12px 0; color: var(--on-surface-variant); font-size: 13px;
-}
-.building-connector .arrow { font-size: 18px; color: var(--brand-300); }
-.building-store {
-  display: flex; align-items: center; justify-content: center; gap: 20px;
-  padding: 16px; background: var(--surface-bright); border: 1px dashed var(--outline);
-  border-radius: var(--radius-md); font-size: 14px; color: var(--on-surface-variant);
-}
-.building-legend {
-  flex: 1; min-width: 280px;
-}
-.legend-card {
-  padding: 20px; background: var(--surface-bright);
-  border: 1px solid var(--outline); border-radius: var(--radius-md);
-  margin-bottom: 12px;
-  transition: all var(--transition-fast);
-}
-.legend-card:hover { box-shadow: var(--elevation-2); border-color: var(--brand-200); }
-.legend-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: var(--on-surface); }
-.legend-card p  { font-size: 13px; color: var(--on-surface-variant); line-height: 1.5; }
-
-/* ============================================================
-   PROBLEM TABS
-   ============================================================ */
-.problem-grid {
-  display: grid; grid-template-columns: 280px 1fr; gap: 36px;
-  align-items: flex-start;
-}
-.sidebar-mock {
-  background: var(--surface-bright); border: 1px solid var(--outline);
-  border-radius: var(--radius-lg); overflow: hidden;
-  box-shadow: var(--elevation-1);
-}
-.sidebar-mock-header {
-  padding: 16px 20px; background: var(--brand-500); color: white;
-  font-size: 14px; font-weight: 600;
-}
-.sidebar-mock-item {
-  padding: 10px 20px; font-size: 13px; color: var(--on-surface-variant);
-  border-bottom: 1px solid var(--outline);
-  display: flex; align-items: center; gap: 10px;
-  transition: background var(--transition-fast);
-}
-.sidebar-mock-item:hover { background: var(--neutral-50); }
-.sidebar-mock-item .ico { font-size: 16px; }
-.sidebar-mock-item.nested { padding-left: 44px; font-size: 12px; }
-
-.problem-tabs { display: flex; flex-direction: column; gap: 0; }
-.tab-buttons { display: flex; gap: 4px; margin-bottom: 0; }
-.tab-btn {
-  flex: 1; padding: 12px 8px; border: 1px solid var(--outline);
-  background: var(--surface-bright); color: var(--on-surface-variant);
-  font-size: 13px; font-weight: 600; cursor: pointer;
-  border-radius: var(--radius-md) var(--radius-md) 0 0;
-  transition: all var(--transition-fast);
-  font-family: inherit;
-  border-bottom: 2px solid transparent;
-}
-.tab-btn.active {
-  color: var(--primary); background: var(--brand-25);
-  border-color: var(--brand-100); border-bottom-color: var(--primary);
-}
-.tab-btn:hover:not(.active) { background: var(--neutral-50); }
-.tab-panel {
-  display: none; padding: 24px;
-  background: var(--surface-bright); border: 1px solid var(--outline);
-  border-radius: 0 0 var(--radius-md) var(--radius-md);
-  border-top: none;
-}
-.tab-panel.active { display: block; }
-.tab-panel h4 { font-size: 16px; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-.tab-panel p  { font-size: 14px; color: var(--on-surface-variant); line-height: 1.6; }
-.badge-error   { font-size: 11px; padding: 2px 10px; border-radius: 10px; background: var(--red-100); color: var(--error); font-weight: 600; }
-.badge-warning { font-size: 11px; padding: 2px 10px; border-radius: 10px; background: var(--orange-100); color: var(--warning); font-weight: 600; }
-.badge-info    { font-size: 11px; padding: 2px 10px; border-radius: 10px; background: var(--blue-100); color: var(--info); font-weight: 600; }
-
-.analogy-box {
-  margin-top: 16px; padding: 16px 20px;
-  background: var(--orange-100); border-radius: var(--radius-md);
-  font-size: 14px; color: var(--neutral-700);
-  border-left: 4px solid var(--warning);
-}
-.analogy-box strong { color: var(--warning); }
-
-/* ============================================================
-   TO-BE ARCHITECTURE
-   ============================================================ */
-.arch-wrapper { position: relative; }
-.base-card {
-  text-align: center;
-  padding: 36px 24px;
-  background: linear-gradient(135deg, var(--brand-50), var(--brand-25));
-  border: 2px solid var(--brand-200);
-  border-radius: var(--radius-xl);
-  margin-bottom: 36px;
-  position: relative;
-}
-.base-card h3 { font-size: 22px; font-weight: 600; color: var(--primary); margin-bottom: 12px; }
-.base-features {
-  display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
-}
-.base-feat {
-  font-size: 13px; padding: 6px 16px; border-radius: 20px;
-  background: var(--surface-bright); border: 1px solid var(--brand-100);
-  color: var(--on-surface);
-}
-.base-feat .emoji { margin-right: 4px; }
-
-.sub-apps {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-}
-.sub-app-card {
-  padding: 24px;
-  background: var(--surface-bright);
-  border: 1px solid var(--outline);
-  border-radius: var(--radius-lg);
-  transition: all var(--transition-fast);
-  cursor: default;
-  border-top: 4px solid transparent;
-}
-.sub-app-card:nth-child(1) { border-top-color: var(--brand-400); }
-.sub-app-card:nth-child(2) { border-top-color: var(--teal); }
-.sub-app-card:nth-child(3) { border-top-color: var(--info); }
-.sub-app-card:nth-child(4) { border-top-color: var(--success); }
-.sub-app-card:nth-child(5) { border-top-color: var(--warning); }
-.sub-app-card:hover {
-  box-shadow: var(--elevation-3);
-  transform: translateY(-4px);
-  border-color: var(--brand-200);
-}
-.sub-app-card .card-icon { font-size: 28px; margin-bottom: 10px; }
-.sub-app-card h4 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
-.sub-app-card .card-purpose {
-  font-size: 13px; color: var(--primary); margin-bottom: 8px; font-weight: 600;
-}
-.sub-app-card p { font-size: 13px; color: var(--on-surface-variant); line-height: 1.5; }
-.sub-app-card .card-tag {
-  display: inline-block; margin-top: 10px; font-size: 11px;
-  padding: 3px 10px; border-radius: 10px;
-  background: var(--neutral-50); color: var(--on-surface-variant);
-}
-
-.connector-line {
-  width: 2px; height: 36px; background: var(--brand-200);
-  margin: 0 auto; position: relative;
-}
-.connector-line::after {
-  content: ''; position: absolute; bottom: -4px; left: -3px;
-  width: 8px; height: 8px; border-radius: 50%; background: var(--brand-300);
-}
-
-/* ============================================================
-   PRINCIPLE CARDS
-   ============================================================ */
-.principle-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
-.principle-card {
-  padding: 30px;
-  background: var(--surface-bright);
-  border: 1px solid var(--outline);
-  border-radius: var(--radius-lg);
-  transition: all var(--transition-fast);
-}
-.principle-card:hover {
-  box-shadow: var(--elevation-2);
-  border-color: var(--brand-200);
-}
-.principle-icon {
-  width: 48px; height: 48px; border-radius: var(--radius-md);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px; margin-bottom: 16px;
-}
-.principle-icon.green  { background: var(--green-100); }
-.principle-icon.blue   { background: var(--blue-100); }
-.principle-icon.orange { background: var(--orange-100); }
-.principle-card h4 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
-.principle-card p  { font-size: 14px; color: var(--on-surface-variant); line-height: 1.6; }
-.principle-card .tech-tag {
-  display: inline-block; margin-top: 12px; font-size: 12px;
-  padding: 4px 12px; border-radius: 20px;
-  background: var(--brand-50); color: var(--primary); font-weight: 600;
-}
-
-/* ============================================================
-   BEFORE / AFTER
-   ============================================================ */
-.comparison {
-  display: grid; grid-template-columns: 1fr 60px 1fr; gap: 0;
-  align-items: stretch;
-}
-.comp-side {
-  padding: 30px;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--outline);
-}
-.comp-before {
-  background: var(--red-100);
-  border-color: #f0c0c2;
-}
-.comp-after {
-  background: var(--green-100);
-  border-color: #b8e0bc;
-}
-.comp-side h4 {
-  font-size: 16px; font-weight: 600; margin-bottom: 16px;
-  display: flex; align-items: center; gap: 8px;
-}
-.comp-arrow {
-  display: flex; align-items: center; justify-content: center;
-  font-size: 28px; color: var(--brand-400);
-}
-.comp-item {
-  padding: 8px 14px; margin-bottom: 6px;
-  border-radius: var(--radius-sm); font-size: 13px;
-  display: flex; align-items: center; gap: 8px;
-}
-.comp-before .comp-item {
-  background: rgba(255,255,255,.6); color: var(--neutral-700);
-}
-.comp-after .comp-item {
-  background: rgba(255,255,255,.6); color: var(--neutral-700);
-}
-.comp-section-label {
-  font-size: 11px; font-weight: 600; color: var(--on-surface-variant);
-  margin: 12px 0 6px; letter-spacing: .5px; text-transform: uppercase;
-}
-
-/* ============================================================
-   TABLE  — 변경 영향 범위
-   ============================================================ */
-.change-table {
-  width: 100%; border-collapse: collapse; margin-top: 24px;
-  background: var(--surface-bright); border-radius: var(--radius-md);
-  overflow: hidden; box-shadow: var(--elevation-1);
-}
-.change-table th {
-  font-size: 13px; font-weight: 600; padding: 12px 16px;
-  background: var(--brand-50); color: var(--primary); text-align: left;
-  border-bottom: 2px solid var(--brand-100);
-}
-.change-table td {
-  font-size: 13px; padding: 10px 16px;
-  border-bottom: 1px solid var(--outline);
-  color: var(--on-surface-variant);
-}
-.change-table tr:last-child td { border-bottom: none; }
-.status-badge {
-  display: inline-block; font-size: 11px; padding: 2px 8px;
-  border-radius: 10px; font-weight: 600;
-}
-.status-badge.keep    { background: var(--green-100); color: var(--success); }
-.status-badge.change  { background: var(--brand-50); color: var(--primary); }
-.status-badge.new     { background: var(--blue-100); color: var(--info); }
-
-/* ============================================================
-   SSO FLOW
-   ============================================================ */
-.sso-flow {
-  display: flex; align-items: center; justify-content: center;
-  gap: 8px; flex-wrap: wrap; margin-top: 20px;
-}
-.sso-step {
-  padding: 10px 18px; border-radius: var(--radius-md);
-  font-size: 13px; font-weight: 600;
-  background: var(--surface-bright); border: 1px solid var(--outline);
-}
-.sso-step.primary { background: var(--brand-50); border-color: var(--brand-200); color: var(--primary); }
-.sso-arrow { font-size: 18px; color: var(--brand-300); }
-
-/* ============================================================
-   FOOTER
-   ============================================================ */
-footer {
-  padding: 30px 0; text-align: center;
-  border-top: 1px solid var(--outline);
-  color: var(--on-surface-variant); font-size: 13px;
-}
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-@media (max-width: 860px) {
-  .hero h1 { font-size: 28px; }
-  .problem-grid { grid-template-columns: 1fr; }
-  .comparison { grid-template-columns: 1fr; }
-  .comp-arrow { transform: rotate(90deg); padding: 10px 0; }
-  .building-layer.highlight::after { display: none; }
-  .building { width: 100%; }
-  section { padding: 48px 0; }
-  .nav-links a { font-size: 12px; padding: 4px 8px; }
-}
-
-/* AIR Architecture Diagram */
-.air-arch { display: flex; flex-direction: column; gap: 0; align-items: center; }
-.air-top-block {
-  width: 100%; padding: 30px 36px;
-  background: var(--neutral-800); color: #fff;
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-}
-[data-theme="dark"] .air-top-block { background: var(--brand-500); }
-.air-top-block h3 { font-size: 20px; font-weight: 600; margin-bottom: 14px; color: #fff; }
-.air-top-block .air-features { display: flex; flex-direction: column; gap: 6px; }
-.air-top-block .air-feat { font-size: 14px; color: rgba(255,255,255,.8); }
-.air-connector { width: 2px; height: 32px; background: var(--neutral-300); position: relative; }
-.air-connector::before, .air-connector::after {
-  content: ''; position: absolute; left: -3px; width: 8px; height: 8px;
-  border-radius: 50%; background: var(--neutral-400);
-}
-.air-connector::before { top: -4px; }
-.air-connector::after { bottom: -4px; }
-.air-mid-section { width: 100%; padding: 30px 0; }
-.air-mid-label { font-size: 12px; font-weight: 600; color: var(--on-surface-variant); letter-spacing: .5px; text-transform: uppercase; margin-bottom: 12px; }
-.air-sub-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
-.air-sub-card {
-  padding: 20px; background: var(--surface-bright);
-  border: 1px solid var(--outline); border-radius: var(--radius-md);
-  transition: all .2s ease;
-}
-.air-sub-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,.08); border-color: var(--brand-200); }
-.air-sub-card.dashed { border-style: dashed; }
-.air-sub-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: var(--on-surface); }
-.air-sub-card p { font-size: 13px; color: var(--on-surface-variant); line-height: 1.5; }
-.air-sub-card .sub-tag { display: inline-block; margin-top: 8px; font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
-.air-sub-card .sub-tag.default { background: #ecf8ed; color: #35a142; }
-.air-sub-card .sub-tag.addon { background: #e6f2fb; color: #3e9bca; }
-[data-theme="dark"] .air-sub-card .sub-tag.default { background: rgba(53,161,66,.2); }
-[data-theme="dark"] .air-sub-card .sub-tag.addon { background: rgba(62,155,202,.2); }
-.air-bottom-block {
-  width: 100%; padding: 30px 36px;
-  background: var(--neutral-800); color: #fff;
-  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-}
-[data-theme="dark"] .air-bottom-block { background: var(--brand-500); }
-.air-bottom-block h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #fff; }
-.air-bottom-block p { font-size: 14px; color: rgba(255,255,255,.7); line-height: 1.6; }
-.air-bottom-block .base-label { font-size: 12px; color: rgba(255,255,255,.5); margin-top: 10px; }
-.air-arrow-group { display: flex; align-items: center; justify-content: center; gap: 4px; padding: 16px 0; color: var(--neutral-400); font-size: 13px; }
-.air-arrow-group .arr { font-size: 20px; color: var(--neutral-300); }
-@media (max-width: 860px) {
-  .air-sub-grid { grid-template-columns: 1fr; }
-}
-
-</style>
-</head>
-<body>
-<!-- ============================================================
-     NAVIGATION
-     ============================================================ -->
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="#" class="nav-logo"><span class="dot"></span>AIMS SaaS Improvement Plan</a>
-    <div class="nav-links">
-      <a href="#structure">구조 이해</a>
-      <a href="#problem">현재 문제</a>
-      <a href="#solution">개편 방향</a>
-      <a href="#tech">기술 검증</a>
-      <a href="#compare">Before/After</a>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"></button>
+<div class="page">
+  <div class="hdr">
+    <div><div class="sec">02 · 공유</div><h1>시스템 흐름도 (데이터 이동)</h1></div>
+    <div class="sub">생산 데이터 → Central Server(Whitelist / Life Cycle) → 고객사 환경 → ESL 단말</div>
+  </div>
+  <div class="flowwrap">
+    <div class="flowtitle">데이터 통합 및 수명주기 관리</div>
+    <svg viewBox="0 0 1000 300" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, Noto Sans CJK KR, Malgun Gothic, sans-serif">
+      <defs>
+        <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+        <marker id="ar2" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ea580c"/></marker>
+      </defs>
+      <rect x="10" y="70" width="120" height="64" rx="6" fill="#eaf2fb" stroke="#5b8fd1" stroke-width="1.5"/>
+      <text x="70" y="98" text-anchor="middle" font-size="15" font-weight="700" fill="#1e3a5f">MES</text>
+      <text x="70" y="118" text-anchor="middle" font-size="12" fill="#1e3a5f">(생산 DB)</text>
+      <rect x="170" y="70" width="120" height="64" rx="6" fill="#eaf2fb" stroke="#5b8fd1" stroke-width="1.5"/>
+      <text x="230" y="98" text-anchor="middle" font-size="15" font-weight="700" fill="#1e3a5f">중계 서버</text>
+      <text x="230" y="118" text-anchor="middle" font-size="12" fill="#1e3a5f">(본사)</text>
+      <path d="M328,72 L328,134 A92,14 0 0 0 512,134 L512,72" fill="#7c3aed" stroke="#5b21b6" stroke-width="1.5"/>
+      <ellipse cx="420" cy="72" rx="92" ry="14" fill="#a78bfa" stroke="#5b21b6" stroke-width="1.5"/>
+      <text x="420" y="108" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">Central Server</text>
+      <text x="420" y="128" text-anchor="middle" font-size="11.5" fill="#ede9fe">(Whitelist / Life Cycle)</text>
+      <rect x="560" y="70" width="140" height="64" rx="6" fill="#eaf2fb" stroke="#5b8fd1" stroke-width="1.5"/>
+      <text x="630" y="98" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1e3a5f">고객사</text>
+      <text x="630" y="117" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1e3a5f">Environment Server</text>
+      <rect x="740" y="70" width="110" height="64" rx="6" fill="#eaf2fb" stroke="#5b8fd1" stroke-width="1.5"/>
+      <text x="795" y="108" text-anchor="middle" font-size="14" font-weight="700" fill="#1e3a5f">Gateway</text>
+      <rect x="890" y="70" width="100" height="64" rx="6" fill="#fff" stroke="#1e3a5f" stroke-width="1.8"/>
+      <text x="940" y="98" text-anchor="middle" font-size="14" font-weight="700" fill="#1e3a5f">ESL 단말</text>
+      <text x="940" y="117" text-anchor="middle" font-size="11.5" fill="#1e3a5f">(Activation)</text>
+      <g stroke="#16a34a" stroke-width="2" stroke-dasharray="6,4" fill="none" marker-end="url(#ar)">
+        <line x1="132" y1="102" x2="166" y2="102"/>
+        <line x1="292" y1="102" x2="324" y2="102"/>
+        <line x1="514" y1="102" x2="556" y2="102"/>
+        <line x1="702" y1="102" x2="736" y2="102"/>
+        <line x1="852" y1="102" x2="886" y2="102"/>
+        <path d="M790,255 L630,255 L630,140"/>
+      </g>
+      <line x1="430" y1="150" x2="430" y2="194" stroke="#9aa3ae" stroke-width="1.2"/>
+      <rect x="252" y="196" width="356" height="62" rx="6" fill="#e8f0fb" stroke="#bcd0ea"/>
+      <text x="430" y="220" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5fae">주요 테이블 구조 (출하 - 박스 - MAC)</text>
+      <text x="430" y="244" text-anchor="middle" font-size="10.5" fill="#374151">Ship Master → Ship Data → Packing_box → Packing_box_inner_mac</text>
+      <rect x="792" y="225" width="150" height="58" rx="6" fill="#eaf2fb" stroke="#5b8fd1" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <text x="867" y="250" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1e3a5f">RMA Server</text>
+      <text x="867" y="270" text-anchor="middle" font-size="11.5" fill="#1e3a5f">(선택)</text>
+      <a href="https://tree-ego-86859481.figma.site" target="_blank" rel="noopener" style="cursor:pointer">
+        <rect x="20" y="196" width="200" height="62" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="1.8"/>
+        <text x="120" y="222" text-anchor="middle" font-size="13.5" font-weight="700" fill="#9a3412">Box Scan Mobile App</text>
+        <text x="120" y="243" text-anchor="middle" font-size="11.5" fill="#c2410c" text-decoration="underline">접속하기 ↗</text>
+      </a>
+      <path d="M220,227 L240,227 L240,170 L370,170 L370,152" stroke="#ea580c" stroke-width="2" stroke-dasharray="6,4" fill="none" marker-end="url(#ar2)"/>
+      <text x="120" y="186" text-anchor="middle" font-size="10" fill="#c2410c">Box / MAC Scan · Customer Code 등록</text>
+      <line x1="12" y1="288" x2="52" y2="288" stroke="#16a34a" stroke-width="2" stroke-dasharray="6,4"/>
+      <text x="58" y="292" font-size="10.5" fill="#4b5563">데이터 이동 (Data Flow)</text>
+    </svg>
+  </div>
+  <div class="notes">
+    <div class="card">
+      <h3>구간별 연계</h3>
+      <ul>
+        <li><b>MES(생산 DB) → 중계 서버(본사) → Central Server</b> : 생산·포장·출하 데이터 전달</li>
+        <li><b>Central Server</b> : 출하–박스–MAC 관계(Ship Master → Ship Data → Packing_box → Packing_box_inner_mac)와 Whitelist / Life Cycle 관리</li>
+        <li><b>Box Scan Mobile App → Central Server</b> : 고객 인도 전 Box / MAC 스캔 및 Customer Code(Store Code) 등록 — <a href="https://tree-ego-86859481.figma.site" target="_blank" rel="noopener">App 접속 ↗</a></li>
+        <li><b>Central ↔ 고객사 Environment Server</b> : Whitelist 및 최초 Activation 정보 Daily 교환</li>
+        <li><b>Environment Server → Gateway</b> : 허용 MAC 적용 → ESL 단말 Activation</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Notes</h3>
+      <ul>
+        <li>Store Code는 선택 항목</li>
+        <li>RMA 서버는 기존 사용 중인 서버와 Tool은 유지하고, RMA 정보만 Central Server에서 받아오는 방향 등을 검토 중</li>
+        <li>실제 시스템 테이블 및 연계 방식은 내부 설계에 따라 변경될 수 있음</li>
+      </ul>
     </div>
   </div>
-</nav>
+</div>
 
-<!-- ============================================================
-     HERO
-     ============================================================ -->
-<section class="hero" id="top">
-  <div class="container">
-    <div class="hero-badge">AIMS SaaS Frontend Restructure</div>
-    <h1>AIMS SaaS <span>Improvement Plan</span><br>기존 구조를 유지하며 효율적으로 개선하려합니다.</h1>
-    <p>현재 시스템 구조를 이해하고, 프론트엔드 기능 재배치의 방향을 한눈에 파악할 수 있습니다.</p>
-    <div class="hero-chips">
-      <span class="hero-chip">🏗️ 건물 비유로 설명</span>
-      <span class="hero-chip">🔴 현재 문제점 3가지</span>
-      <span class="hero-chip">🟢 Base + Sub App 구조</span>
-      <span class="hero-chip">✅ 기술적 실현 가능성</span>
-    </div>
+<div class="page">
+  <div class="hdr">
+    <div><div class="sec">03 · 논의 안건</div><h1>Whitelist 등록을 위한 Box Scan 정책</h1></div>
+    <div class="sub"><a class="applink big" href="https://tree-ego-86859481.figma.site" target="_blank" rel="noopener">Box Scan Mobile App 접속 ↗</a><br>출처: Whitelist_Process.xlsx › Whitelist Tab (17~23행)</div>
   </div>
-</section>
-
-<!-- ============================================================
-     SECTION 1 — 구조 이해 (건물 비유)
-     ============================================================ -->
-<section id="structure">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-number">SECTION 01</div>
-      <h2 class="headline-md">SaaS 시스템을 건물 구조로 이해하기</h2>
-      <p>AIMS SaaS는 4개 층으로 나뉩니다. 우리가 개선하려는 것은 <strong>인테리어(프론트엔드)</strong>뿐입니다.</p>
-    </div>
-
-    <div class="building-wrap reveal">
-      <div>
-        <div class="building">
-          <div class="building-layer highlight">
-            <div class="layer-title">프론트엔드 — 사용자가 보는 화면</div>
-            <div class="layer-desc">대시보드, 메뉴, 버튼 등 사용자가 직접 클릭하는 모든 것</div>
-            <div class="layer-analogy">🏠 건물 내부 인테리어</div>
-          </div>
-          <div class="building-layer">
-            <div class="layer-title">API Service — 백엔드</div>
-            <div class="layer-desc">화면의 요청을 받아서 처리하고, 결과를 돌려주는 엔진</div>
-            <div class="layer-analogy">🏠 건물의 배관 · 전기 · 통신 시설</div>
-          </div>
-          <div class="building-layer">
-            <div class="layer-title">MongoDB / Azure Storage — 데이터</div>
-            <div class="layer-desc">태그 정보, 매장 정보, 이미지 등 모든 데이터 보관</div>
-            <div class="layer-analogy">🏠 건물 지하 창고</div>
-          </div>
-          <div class="building-layer">
-            <div class="layer-title">Azure 클라우드 인프라 — AKS, IoT Hub</div>
-            <div class="layer-desc">서버가 실제로 돌아가는 물리적 환경 (Microsoft Azure)</div>
-            <div class="layer-analogy">🏠 건물 부지 · 기초 공사</div>
-          </div>
-        </div>
-        <div class="building-connector">
-          <div class="arrow">↕</div>
-          <span>인터넷 (Azure IoT Hub)</span>
-        </div>
-        <div class="building-store">
-          <span>매장 Gateway</span>
-          <span>→</span>
-          <span>ESL 태그</span>
-        </div>
-      </div>
-
-      <div class="building-legend">
-        <div class="legend-card" style="border-left: 4px solid var(--brand-400);">
-          <h4>핵심 포인트</h4>
-          <p>이번 개편은 <strong>맨 위층(프론트엔드)의 방 배치</strong>만 바꾸는 것입니다. 아래 3개 층(백엔드, DB, 인프라)은 <strong>전혀 건드리지 않습니다.</strong></p>
-        </div>
-        <div class="legend-card">
-          <h4>Multi-Tenant 구조</h4>
-          <p>하나의 건물을 여러 고객사(리테일러)가 함께 사용합니다. A고객 데이터는 B고객에게 보이지 않는, 논리적으로 분리된 구조입니다.</p>
-        </div>
-        <div class="legend-card">
-          <h4>IoT Hub란?</h4>
-          <p>매장의 Gateway 장비와 클라우드 서버를 연결하는 전용 통신 채널입니다. 장비 상태 확인, 펌웨어 업데이트 등을 담당합니다.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     SECTION 2 — 현재 문제
-     ============================================================ -->
-<section id="problem" style="background: var(--neutral-25);">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-number">SECTION 02</div>
-      <h2 class="headline-md">현재 문제 — 왜 바꿔야 하는가</h2>
-      <p>지금 AIMS SaaS의 메뉴는 "디바이스 종류별"로 나열되어 있어, 사용 목적을 알 수 없는 구조입니다.</p>
-    </div>
-
-    <div class="problem-grid reveal">
-      <!-- 사이드바 목업 -->
-      <div class="sidebar-mock">
-        <div class="sidebar-mock-header">AIMS SaaS — 현재 메뉴 (As‑Is)</div>
-        <div class="sidebar-mock-item">ESL</div>
-        <div class="sidebar-mock-item nested">Overview</div>
-        <div class="sidebar-mock-item nested">Label</div>
-        <div class="sidebar-mock-item nested">Products</div>
-        <div class="sidebar-mock-item nested">Gateway</div>
-        <div class="sidebar-mock-item nested">Power Rail</div>
-        <div class="sidebar-mock-item nested">Template</div>
-        <div class="sidebar-mock-item nested">Vision</div>
-        <div class="sidebar-mock-item nested">Multifunction</div>
-        <div class="sidebar-mock-item nested">Firmware</div>
-        <div class="sidebar-mock-item nested">Smart Map</div>
-        <div class="sidebar-mock-item">LBS</div>
-        <div class="sidebar-mock-item">LCD</div>
-        <div class="sidebar-mock-item">MAP Editor</div>
-        <div class="sidebar-mock-item">EPS</div>
-        <div class="sidebar-mock-item">CONFIG</div>
-        <div class="sidebar-mock-item">SAA</div>
-      </div>
-
-      <!-- 문제점 탭 -->
-      <div class="problem-tabs">
-        <div class="tab-buttons">
-          <button class="tab-btn active" data-tab="tab1">❶ 서비스 사일로</button>
-          <button class="tab-btn" data-tab="tab2">❷ UX 혼재</button>
-          <button class="tab-btn" data-tab="tab3">❸ 대시보드 부족</button>
-        </div>
-        <div class="tab-panel active" id="tab1">
-          <h4><span class="badge-error">Critical</span> 서비스 간 데이터가 연결되지 않음</h4>
-          <p>ESL, Gateway, Vision 등의 데이터들이 <strong>분산</strong> 되어있어, 데이터가 서로 연결되지 않습니다.</p>
-          <p style="margin-top:10px;">예를 들어 "A매장에서 ESL에서 배터리 문제가 발생했을 때, 그 원인이 사용 환경 때문인지, 배터리 불량인지, 교체 주기 도래인지" — <strong>지금 구조에서는 알 수 없습니다.</strong></p>
-          <div class="analogy-box">
-            <strong>💡 비유:</strong> 5개 부서가 있는 회사인데, 각 부서가 서로 다른 메신저를 쓰고, 회의록도 공유하지 않는 상태. 전사 회의를 해도 전체 그림이 안 그려지는 상황.
-          </div>
-        </div>
-        <div class="tab-panel" id="tab2">
-          <h4><span class="badge-warning">Major</span> 목적이 다른 UX가 한 화면에 혼재</h4>
-          <p>"<strong>디바이스 관리</strong>"(ESL·GW 상태 조회)와 "<strong>선반 모니터링</strong>"(Vision·Loadcell 결품 감지)이 같은 메뉴 레벨에 섞여 있습니다.</p>
-          <p style="margin-top:10px;">사용자가 "결품 상태를 보려고" 들어왔는데 ESL, LCD, LBS, Gateway를 다 지나쳐야 Vision 메뉴를 찾을 수 있습니다.</p>
-          <div class="analogy-box">
-            <strong>💡 비유:</strong> 원룸에 주방·침실·서재·창고를 칸막이 없이 다 때려넣은 상태. 요리하려면 침대 옆을 지나가야 하고, 책 찾으려면 냉장고를 열어야 하는 격.
-          </div>
-        </div>
-        <div class="tab-panel" id="tab3">
-          <h4><span class="badge-info">Strategic</span> 대시보드 정보 부족 — 의사결정 지원 불가</h4>
-          <p>현재 Dashboard는 "Device Attention" 수준에 그쳐 있어, 실질적인 매장 운영 인사이트를 제공하지 못합니다.</p>
-          <ul style="margin-top:10px; padding-left:20px; font-size:14px; color:var(--on-surface-variant); line-height:1.8;">
-            <li>✕ 역할/권한별 화면 분리 기능 없음</li>
-            <li>✕ Asset Management 항목 부재</li>
-            <li>✕ Health Monitoring 항목 부재</li>
-            <li>✕ 고객사별 환경 차이 미반영</li>
-          </ul>
-          <div class="analogy-box">
-            <strong>💡 비유:</strong> 자동차 계기판에 속도계만 있고, 연료계·엔진온도·타이어압력이 없는 상태. 운전은 할 수 있지만, 정보에 기반한 판단이 불가능.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     SECTION 3 — 개편 방향
-     ============================================================ -->
-<section id="solution">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-number">SECTION 03</div>
-      <h2 class="headline-md">개편 방향 — AIMS SaaS 기능 재분류 + Sub Application 확장</h2>
-      <p>AIMS SaaS의 기존 기능을 목적별로 재분류하고, Map Studio와 AI Dashboard를 Sub Application으로 제공합니다. AIMS SaaS 자체를 바꾸는 것이 아니라, 위에 Sub App을 얹는 구조입니다.</p>
-    </div>
-    <div class="air-arch reveal">
-
-      <div class="air-mid-section" style="padding-top:0;">
-        <div class="air-mid-label">기본 제공 Sub Apps</div>
-        <div class="air-sub-grid">
-          <div class="air-sub-card" style="border-top:3px solid var(--primary);">
-            <h4>AIR (AI for Retail)</h4>
-            <p>Map Studio + AI Dashboard. 과금 구조에 따라 Map Studio만 제공하거나, Map Studio + AI Dashboard를 함께 제공합니다.</p>
-            <p style="font-size:11px;color:var(--primary);margin-top:6px;font-weight:600;">전제 조건 : Vision 또는 Power Rail (UWB) 사용 필수</p>
-            <span class="sub-tag default">기본 제공</span>
-          </div>
-          <div class="air-sub-card">
-            <h4>Layout Designer</h4>
-            <p>ESL Tag에 표시할 Article 편집기. 이미 별도 경로(/LD/)로 운영 중.</p>
-            <span class="sub-tag default">기본 제공</span>
-          </div>
-          <div class="air-sub-card">
-            <h4>Device Management</h4>
-            <p>디바이스를 사용 목적별로 분류하여 관리. 가격 표시 · 선반 모니터링 · 광고 · 네트워크 · 인프라 등.</p>
-            <span class="sub-tag default">기본 제공</span>
-          </div>
-        </div>
-        <div class="air-mid-label">부가 서비스 — 확장 Sub Application</div>
-        <div class="air-sub-grid">
-          <div class="air-sub-card dashed">
-            <h4>CMS</h4>
-            <p>EPD · LCD Signage 콘텐츠 송출 및 스케줄링 통합 관리.</p>
-            <span class="sub-tag addon">부가 서비스</span>
-          </div>
-          <div class="air-sub-card dashed">
-            <h4>RMN</h4>
-            <p>Retail Media Network — 광고 매체 관리 · 과금 · 리포트.</p>
-            <span class="sub-tag addon">부가 서비스</span>
-          </div>
-          <div class="air-sub-card dashed">
-            <h4>++</h4>
-            <p>추가 확장 가능. Picking Solution, SCM 연동 등 필요에 따라 Sub App 추가.</p>
-            <span class="sub-tag addon">확장 가능</span>
-          </div>
-        </div>
-      </div>
-
-      <div style="margin-bottom:24px;">
-        <h3 style="font-size:16px;font-weight:600;text-align:center;margin-bottom:14px;color:var(--on-surface);">AIR 서비스 활성화 구조</h3>
-        <table class="change-table">
-          <thead><tr><th>구분</th><th>Vision / Power Rail 사용자 (AIR 미과금)</th><th>AIR 과금 사용자</th></tr></thead>
-          <tbody>
-            <tr><td style="font-weight:600;color:var(--on-surface);">전제 조건</td><td>Vision 또는 Power Rail (UWB) 사용</td><td>Vision 또는 Power Rail (UWB) 사용</td></tr>
-            <tr><td style="font-weight:600;color:var(--on-surface);">Map Studio (Map Generate + Management)</td><td><span class="status-badge keep">활성화</span></td><td><span class="status-badge keep">활성화</span></td></tr>
-            <tr><td style="font-weight:600;color:var(--on-surface);">Dashboard (Map View + Widget)</td><td><span class="status-badge keep">활성화</span></td><td><span class="status-badge keep">활성화</span></td></tr>
-            <tr><td style="font-weight:600;color:var(--on-surface);">AI Agent (Ontology + GraphRAG + LLM)</td><td style="color:var(--on-surface-variant);">—</td><td><span class="status-badge new">활성화</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="air-arrow-group"><span class="arr">↑</span> Sub Application은 AIMS SaaS 위에 올라가는 확장 서비스 <span class="arr">↑</span></div>
-
-      <div class="air-bottom-block">
-        <h3>Base (= AIMS SaaS 코어 인프라)</h3>
-        <p>AIMS SaaS 기존 기능을 목적별로 재분류. Login/SSO · ACL/권한 · Company-Store 구조 · Third Party 관리 · API 관리</p>
-        <div class="base-label">→ AIMS SaaS는 그대로 유지. 기능을 재분류하고, 위에 Sub App을 얹는 구조.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="tech" style="background: var(--neutral-25);">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-number">SECTION 04</div>
-      <h2 class="headline-md">기술적으로 가능한 이유</h2>
-      <p>이미 검증된 3가지 근거를 바탕으로, 프론트엔드 재배치가 기술적으로 실현 가능합니다.</p>
-    </div>
-
-    <div class="principle-grid reveal">
-      <div class="principle-card">
-        <div class="principle-icon green">🔀</div>
-        <h4>프론트엔드 분리 가능</h4>
-        <p>AIMS SaaS는 Vue.js로 되어 있고, 새 Sub App은 다른 기술 스택으로 만들어도 됩니다. 사용자는 같은 브라우저 안에서 메뉴만 전환하면 됩니다. SSO로 로그인 한 번이면 모든 Sub App 접근 가능.</p>
-        <span class="tech-tag">Vue.js + SSO (Single Sign-On)</span>
-      </div>
-      <div class="principle-card">
-        <div class="principle-icon blue">🔗</div>
-        <h4>데이터 연동 검증 완료</h4>
-        <p>AIMS SaaS는 이미 Open API를 제공 중입니다. Sub App이 필요한 데이터(Shelf Group ID, Store ID 등)는 API로 단방향 참조만 하면 되어, 양방향 동기화가 불필요합니다.</p>
-        <span class="tech-tag">REST API · 단방향 참조 · Webhook</span>
-      </div>
-      <div class="principle-card">
-        <div class="principle-icon orange">🛡️</div>
-        <h4>백엔드·인프라 변경 없음</h4>
-        <p>Azure AKS(서버), IoT Hub(장비 통신), MongoDB(데이터), Image Generator(이미지 생성) — 기존 인프라는 모두 그대로 유지됩니다. 온톨로지용 Neo4j만 Sub App 전용으로 신규 추가.</p>
-        <span class="tech-tag">Azure AKS · IoT Hub · MongoDB 유지</span>
-      </div>
-    </div>
-
-    <!-- 변경 영향 테이블 -->
-    <div class="reveal" style="margin-top:42px;">
-      <h3 class="headline-sm" style="text-align:center; margin-bottom:20px;">변경 영향 범위 요약</h3>
-      <table class="change-table">
-        <thead>
-          <tr>
-            <th>컴포넌트</th>
-            <th>역할</th>
-            <th>변경 여부</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Azure AKS (서버 인프라)</td><td>컨테이너 오케스트레이션</td><td><span class="status-badge keep">유지</span></td></tr>
-          <tr><td>API Service (백엔드)</td><td>비즈니스 로직 처리</td><td><span class="status-badge keep">유지</span> + Sub App용 API 추가 가능</td></tr>
-          <tr><td>MongoDB / Azure Storage</td><td>데이터·이미지 저장</td><td><span class="status-badge keep">유지</span></td></tr>
-          <tr><td>Azure IoT Hub</td><td>Gateway 통신</td><td><span class="status-badge keep">유지</span></td></tr>
-          <tr><td>Image Generator</td><td>ESL 이미지 렌더링</td><td><span class="status-badge keep">유지</span></td></tr>
-          <tr><td>Application Gateway WAFv2</td><td>보안·트래픽 분배</td><td><span class="status-badge keep">유지</span></td></tr>
-          <tr><td><strong>프론트엔드 (사용자 화면)</strong></td><td>대시보드·메뉴·UI</td><td><span class="status-badge change">재배치</span></td></tr>
-          <tr><td><strong>Neo4j (온톨로지 DB)</strong></td><td>지식 그래프·GraphRAG</td><td><span class="status-badge new">신규 추가</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     SECTION 5 — BEFORE / AFTER
-     ============================================================ -->
-<section id="compare">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-number">SECTION 05</div>
-      <h2 class="headline-md">Before / After — 한눈에 보는 변화</h2>
-      <p>AIMS SaaS는 그대로 유지하면서 기능을 재분류하고, Sub Application으로 확장합니다.</p>
-    </div>
-    <div class="comparison reveal">
-      <div class="comp-side comp-before">
-        <h4>Before — AIMS SaaS</h4>
-        <div class="comp-section-label">디바이스 종류별 나열</div>
-        <div class="comp-item">ESL (Label / Overview / Products)</div>
-        <div class="comp-item">Gateway</div>
-        <div class="comp-item">Power Rail</div>
-        <div class="comp-item">Vision</div>
-        <div class="comp-item">Template</div>
-        <div class="comp-item">Firmware</div>
-        <div class="comp-item">Multifunction</div>
-        <div class="comp-item">Smart Map</div>
-        <div class="comp-item">LBS</div>
-        <div class="comp-item">LCD</div>
-        <div class="comp-item">MAP Editor</div>
-        <div class="comp-item">EPS / CONFIG / SAA</div>
-        <div class="comp-section-label" style="margin-top:16px;">결과</div>
-        <div class="comp-item" style="background:rgba(231,96,103,.15);">UX 혼재 — 목적이 다른 기능이 같은 레벨에 뒤섞임</div>
-        <div class="comp-item" style="background:rgba(231,96,103,.15);">데이터 단절 — 서비스 간 연결 없음</div>
-        <div class="comp-item" style="background:rgba(231,96,103,.15);">목적 불명확 — 뭘 하려고 들어왔는지 메뉴에서 안 보임</div>
-      </div>
-      <div class="comp-arrow">→</div>
-      <div class="comp-side comp-after">
-        <h4>After — AIMS SaaS + Sub Apps</h4>
-        <div class="comp-section-label">AIMS SaaS (Base) — 기능 재분류</div>
-        <div class="comp-item">Login/SSO · ACL/권한 · Company-Store</div>
-        <div class="comp-item">Third Party 관리 · API 관리 · Role Mapping</div>
-        <div class="comp-item">기존 메뉴를 목적별로 재분류 (디바이스별 → 목적별)</div>
-        <div class="comp-section-label">기본 제공 Sub Apps</div>
-        <div class="comp-item" style="border-left:3px solid #4D469A;">AIR — Map Studio + Dashboard (Vision/Power Rail 시 활성화), AI Agent (AIR 과금 시 추가)</div>
-        <div class="comp-item" style="border-left:3px solid #6058B4;">Layout Designer — Article 편집기</div>
-        <div class="comp-item" style="border-left:3px solid #6058B4;">Device Management — 목적별 분류 (가격표시 · 모니터링 · 광고 · 네트워크 · 인프라)</div>
-        <div class="comp-section-label">부가 Sub Apps</div>
-        <div class="comp-item" style="border-left:3px dashed #3e9bca;">CMS — EPD/LCD 송출 · 스케줄링</div>
-        <div class="comp-item" style="border-left:3px dashed #3e9bca;">RMN — 광고 매체 · 과금 · 리포트</div>
-        <div class="comp-item" style="border-left:3px dashed #3e9bca;">++ 추가 확장 가능</div>
-        <div class="comp-section-label" style="margin-top:16px;">결과</div>
-        <div class="comp-item" style="background:rgba(53,161,66,.15);font-weight:600;">목적별 독립 UX — 각 Sub App이 명확한 역할</div>
-        <div class="comp-item" style="background:rgba(53,161,66,.15);font-weight:600;">온톨로지 기반 데이터 연결 — 크로스 도메인 추론 가능</div>
-        <div class="comp-item" style="background:rgba(53,161,66,.15);font-weight:600;">AIMS SaaS는 그대로, Sub App으로 확장</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="container">
-    <p>© 2026 SOLUM Inc. · 사업&제품전략G · AIMS SaaS Frontend Restructure Guide · Confidential</p>
-  </div>
-</footer>
-
-<!-- ============================================================
-     SCRIPT — Tabs, Scroll Reveal, Theme Toggle
-     ============================================================ -->
+  <table class="pol"><colgroup><col style="width:13%"><col style="width:9.5%"><col style="width:11%"><col style="width:23%"><col style="width:30%"><col style="width:13.5%"></colgroup><tr><th>Case</th><th>스캔 시점</th><th>장소 및 수행 주체</th><th>처리할 내용</th><th class="disc">논의 필요 사항</th><th class="memo">회의 결정사항 (메모)</th></tr><tr><td class="case">1. PO에 찍힌 그대로 고객 인도</td><td>출하 시<br>(기존과 동일)</td><td>기존 공장 출하 담당</td><td><div class="li"><span class="num">1.</span><span>고객에게 인도될 Box에 PO에 찍힌 최종 고객 Customer Code 할당</span></div></td><td class="disc"><div class="li"><span class="num">1.</span><span>PO 발주 고객, 실제 출하처(법인·총판·SI 파트너 등), Whitelist 최종고객을 각각 구분하여 관리하고, 단계별 식별 코드의 통합 또는 연동 방안 논의</span></div><div class="li"><span class="num">2.</span><span>코드 누락·오류 발생 시 출하 전 정정 절차</span></div></td><td contenteditable="true" title="클릭하여 메모 입력"></td></tr><tr><td class="case">2. 법인·창고를 거쳐 고객 인도</td><td>고객 인도 직전</td><td>각 영업 담당자가 이행 여부 관리</td><td><div class="li"><span class="num">1.</span><span>제공된 App으로 Outer / Inner Box 스캔</span></div><div class="li"><span class="num">2.</span><span>최종 고객의 Customer Code 지정</span></div><div class="li"><span class="num">3.</span><span>Store 지정은 Option (고객이 요구하거나 Shop-in-shop일 경우)</span></div></td><td class="disc"><div class="li"><span class="num">1.</span><span>장소와 관계없이 고객 인도 전 등록</span></div><div class="li"><span class="num">2.</span><span>박스 단위 스캔을 기본으로하고, 법인은 담당자 지정과 등록 이행을 관리</span></div><div class="li"><span class="num">3.</span><span>고객 인도 전 배정 변경이나 오등록이 확인되면, 해당 등록 담당자가 Customer Code와 Store 정보(선택)를 수정하고 변경 이력 관리</span></div></td><td contenteditable="true" title="클릭하여 메모 입력"></td></tr><tr><td class="case">3. 유통사·리셀러를 거쳐 고객 인도</td><td>최종 고객 확정 후<br>고객 인도 직전</td><td>외부 파트너사 담당 법인이 이행 관리</td><td><div class="li"><span class="num">1.</span><span>파트너용 App으로 Box Scan 및 최종 고객의 Customer Code 등록</span></div></td><td class="disc"><div class="li"><span class="num">1.</span><span>외부 채널에도 고객 인도 직전 Whitelist 등록</span></div><div class="li"><span class="num">2.</span><span>법인이 유통사·총판 등에 정책을 안내하고 실제 이행되도록 관리</span></div></td><td contenteditable="true" title="클릭하여 메모 입력"></td></tr><tr><td class="case">4. 법인·본사에서 수령 후 낱개로 분할·배분</td><td>고객 인도 직전</td><td>각 영업 담당자가 이행 여부 관리</td><td><div class="li"><span class="num">1.</span><span>Inner Box를 개봉해 인도할 개별 Label의 MAC 스캔 → Customer Code 지정</span></div><div class="li"><span class="num">2.</span><span>Store 지정은 Option (고객이 요구하거나 Shop-in-shop일 경우)</span></div></td><td class="disc"><div class="li"><span class="num">1.</span><span>낱개 인도분도 개별 스캔 후 Whitelist 등록 완료 후 출하</span></div><div class="li"><span class="num">2.</span><span>Central Server에 저장된 원천 데이터의 Inner Box별 MAC의 최종 고객 정보 할당과 Whitelist 등록 여부(Y/N) 조회 가능한 인터페이스 제공</span></div><div class="li"><span class="num">3.</span><span>낱개를 고객에게 인도하는 Box는 Central Server에서 관리하지 않음</span></div></td><td contenteditable="true" title="클릭하여 메모 입력"></td></tr><tr><td class="case">5. 설치 현장에서 누락된 Label 식별</td><td>설치 중 Activation이 되지 않는 경우</td><td>설치 현장 AE / SI</td><td><div class="li"><span class="num">1.</span><span>개별 MAC 스캔 후 Customer Code 지정</span></div><div class="li"><span class="num">2.</span><span>Store 지정은 Option (고객이 요구하거나 Shop-in-shop일 경우)</span></div></td><td class="disc"><div class="li"><span class="num">1.</span><span>현장 설치 AE·SI에 등록 권한 부여</span></div><div class="li"><span class="num">2.</span><span>누락 제품은 현장에서 보완하고, 정상 등록분은 재스캔하지 않음</span></div></td><td contenteditable="true" title="클릭하여 메모 입력"></td></tr></table>
+</div>
 <script>
-// Tab switching
-document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById(btn.dataset.tab).classList.add('active');
+const t=document.getElementById('lc');
+function clearSel(){delete t.dataset.cur;t.classList.remove('sel');t.querySelectorAll('td').forEach(td=>td.classList.remove('hl','dim','on'))}
+function sel(n){
+  if(t.dataset.cur==n){clearSel();return}
+  t.dataset.cur=n;t.classList.add('sel');
+  t.querySelectorAll('td[data-s]').forEach(td=>{
+    const on=td.dataset.s.split(' ').includes(String(n));
+    td.classList.toggle('hl',on);td.classList.toggle('dim',!on);
+    if(td.classList.contains('stage'))td.classList.toggle('on',on);
   });
-});
-
-// Scroll reveal via Intersection Observer
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Active nav link on scroll
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(section => {
-    if (window.scrollY >= section.offsetTop - 100) {
-      current = section.getAttribute('id');
-    }
-  });
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === '#' + current) link.classList.add('active');
-  });
-});
-
-// Dark mode toggle
-const toggle = document.getElementById('themeToggle');
-toggle.addEventListener('click', () => {
-  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-  document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
-});
+}
+t.querySelectorAll('td.stage').forEach(td=>td.addEventListener('click',()=>sel(td.dataset.stage)));
+document.getElementById('reset').addEventListener('click',clearSel);
 </script>
-</body>
-</html>
+</body></html>
