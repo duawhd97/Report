@@ -11,8 +11,6 @@ body { font-family: 'Pretendard','Noto Sans CJK KR','Malgun Gothic','맑은 고�
 .hdr .sec { font-size:9pt; color:#7030A0; font-weight:700; letter-spacing:.5px; }
 .hdr h1 { font-size:17pt; margin:0; color:#1b2433; }
 .hdr .sub { font-size:8.5pt; color:#6b7280; text-align:right; }
-.foot { margin-top:14px; font-size:8pt; color:#9ca3af; }
-/* page 1 */
 .cond { display:flex; align-items:stretch; gap:8px; margin-bottom:10px; }
 .cond .lbl { width:80px; background:#D9D9D9; font-weight:700; display:flex; align-items:center; justify-content:center; text-align:center; font-size:9.5pt; border-radius:4px; }
 .cbox { flex:1; border:1px solid #c9ced6; border-radius:4px; overflow:hidden; }
@@ -23,7 +21,14 @@ body { font-family: 'Pretendard','Noto Sans CJK KR','Malgun Gothic','맑은 고�
 table.grid { width:100%; border-collapse:collapse; }
 table.grid td { border:1px solid #9aa3ae; text-align:center; vertical-align:middle; padding:3px 2px; font-size:7.6pt; word-break:keep-all; white-space:nowrap; }
 table.grid .rh { background:#D9D9D9; font-weight:700; font-size:8.2pt; text-align:left; padding-left:5px; }
-.stage { background:#7030A0; color:#fff; font-weight:700; font-size:8.6pt !important; }
+.stage { color:#1f2a37; font-weight:800; font-size:8.8pt !important; }
+.st0 { background:#7030A0; color:#fff !important; }
+.stage { cursor:pointer; } .stage:hover { filter:brightness(.92); }
+.svgapp { position:absolute; left:2%; top:65.3%; width:20%; height:20.7%; z-index:3; border-radius:8px; }
+.svgapp:hover { background:rgba(234,88,12,.08); }
+.url { font-size:7.8pt; color:#c2410c; }
+#hlbox { position:absolute; left:0; top:0; width:0; height:0; display:none; pointer-events:none; z-index:5; }
+#hlbox .seg { position:absolute; background:#e11d48; }
 .scan { background:#00B050; color:#fff; font-weight:700; font-size:8.4pt !important; }
 .y { background:#FFFF00; font-weight:700; } .o { background:#FFC000; font-weight:700; }
 .g { background:#92D050; font-weight:700; } .bl { background:#8EB4E3; font-weight:700; }
@@ -34,17 +39,16 @@ table.grid .rh { background:#D9D9D9; font-weight:700; font-size:8.2pt; text-alig
 .hint { font-size:8.8pt; color:#4b5563; margin:2px 0 6px; display:flex; align-items:center; gap:10px; }
 .btn { font-family:inherit; font-size:8pt; border:1px solid #7030A0; color:#7030A0; background:#fff; border-radius:4px; padding:2px 9px; cursor:pointer; }
 .btn:hover { background:#f6f0fb; }
-.stage { cursor:pointer; transition:filter .15s; }
-.stage:hover { filter:brightness(1.2); }
+.key { cursor:pointer; transition:filter .15s; }
+.key:hover { filter:brightness(.9); box-shadow:inset 0 0 0 2px #7030A0; }
 #lc td { transition:opacity .2s, box-shadow .2s; }
 #lc.sel td[data-s].dim { opacity:.18; }
-#lc.sel td.hl { box-shadow:inset 0 0 0 2px #e11d48; }
-#lc.sel td.stage.on { background:#e11d48; }
+
+
 #lc.sel td.blank.hl, #lc.sel td.hl:empty { box-shadow:none; }
 .applink { display:inline-block; margin-top:3px; color:#fff !important; background:#ea580c; border-radius:4px; padding:1px 7px; font-size:7.6pt; text-decoration:none; font-weight:700; white-space:nowrap; }
 .applink.big { font-size:9pt; padding:3px 10px; margin-bottom:4px; }
 .applink:hover { background:#c2410c; }
-/* page 2 */
 .flowwrap { border:1px solid #d6d9e0; border-radius:8px; padding:14px 14px 12px; background:#fafbfd; }
 .flowtitle { text-align:center; color:#1f5fae; font-weight:700; font-size:10.5pt; margin-bottom:8px; }
 .notes { margin-top:12px; display:flex; gap:12px; }
@@ -52,7 +56,6 @@ table.grid .rh { background:#D9D9D9; font-weight:700; font-size:8.2pt; text-alig
 .notes h3 { margin:0 0 5px; font-size:9.5pt; color:#4b2a7b; }
 .notes ul { margin:0; padding-left:15px; font-size:9.2pt; line-height:1.6; }
 .notes a { color:#c2410c; font-weight:700; }
-/* page 3 */
 table.pol { width:100%; border-collapse:collapse; table-layout:fixed; }
 table.pol th { background:#4b2a7b; color:#fff; font-size:9pt; padding:6px; border:1px solid #4b2a7b; text-align:left; }
 table.pol th.disc { background:#b45309; border-color:#b45309; }
@@ -65,7 +68,6 @@ table.pol td.disc { background:#fff8eb; }
 .li { margin-bottom:4px; display:flex; }
 @media print { html{background:#fff} body{padding:0;max-width:none} .page{box-shadow:none;padding:0;margin:0;border-radius:0;page-break-after:always} .hint{display:none} }
 </style></head><body>
-
 <div class="page">
   <div class="hdr">
     <div><div class="sec">01 · 공유</div><h1>Whitelist 기반 ESL Life Cycle Process</h1></div>
@@ -81,10 +83,9 @@ table.pol td.disc { background:#fff8eb; }
     <div class="op">=</div>
     <div class="wl"><div>Label<br>Whitelist</div></div>
   </div>
-  <div class="hint">▸ <b>제품 이동 단계</b>를 클릭하면 해당 단계의 Scan 시점 · 데이터 생성 단계 · 주요 데이터 · 데이터 예시가 하이라이트됩니다 (다시 클릭 시 해제). <button id="reset" class="btn">전체 보기</button></div><table class="grid" id="lc"><tr style="height:70px"><td class="rh">제품 이동<br>단계</td><td class="stage" data-s="1" data-stage="1" colspan="1">1. 발주</td><td class="stage" data-s="2" data-stage="2" colspan="2">2. 생산</td><td class="stage" data-s="3" data-stage="3" colspan="4">3. 포장</td><td class="stage" data-s="4" data-stage="4" colspan="2">4. 출하</td><td class="stage" data-s="5" data-stage="5" colspan="1">5. 중간 거점<br>도착<br><span class="sm">(법인·창고·<br>유통사·리셀러)</span></td><td class="stage" data-s="6" data-stage="6" colspan="1">6. 최종<br>고객 인도</td><td class="stage" data-s="7" data-stage="7" colspan="3">7. 설치 / 운영</td><td class="stage" data-s="8" data-stage="8" colspan="4">8. RMA / 재출고</td></tr><tr style="height:50px"><td class="rh">Scan 시점</td><td class="" data-s="1"></td><td class="" data-s="2" colspan="2"></td><td class="" data-s="3" colspan="4"></td><td class="scan" data-s="4 5 6" colspan="4">Box Scan (Whitelist 등록)<br><a class="applink" href="https://tree-ego-86859481.figma.site" target="_blank" rel="noopener">Box Scan App ↗</a></td><td class="" data-s="7" colspan="3"></td><td class="scan" data-s="8" colspan="4">Box Scan<br>(RMA 등록)</td></tr><tr style="height:40px"><td class="rh">데이터<br>생성 단계</td><td class="blank" data-s="1" rowspan="5"></td><td class="y" data-s="2 3 4" colspan="8">1. 생산 · 포장 · 출하</td><td class="o" data-s="5 6" colspan="2">2. 고객 정보 매핑 /<br>인도 / 설치</td><td class="g" data-s="7" colspan="3">3. ESL 운영</td><td class="bl" data-s="8" colspan="4">4. RMA</td></tr><tr style="height:70px"><td class="rh">주요 데이터<br>(단계별로 누적)</td><td class="y" data-s="2">MAC ID</td><td class="y" data-s="2">Product<br>Model</td><td class="y" data-s="3">Production<br>Site</td><td class="y" data-s="3">Production<br>Date</td><td class="y" data-s="3">Outer<br>Box ID</td><td class="y" data-s="3">Inner<br>Box ID</td><td class="y" data-s="4">Invoice<br>No.</td><td class="y" data-s="4">Arrival</td><td class="o" data-s="5">Customer<br>Code</td><td class="o" data-s="6">Store<br>Code<br>(Optional)</td><td class="g" data-s="7">First<br>Activation</td><td class="g" data-s="7">Battery<br>Status</td><td class="g" data-s="7">Alive<br>Status</td><td class="bl" data-s="8">RMA<br>No.</td><td class="bl" data-s="8">RMA<br>Received<br>Date</td><td class="bl" data-s="8">RMA<br>Status</td><td class="bl" data-s="8">RMA<br>Completed<br>Date</td></tr><tr style="height:56px"><td class="rh" rowspan="3">데이터<br>예시</td><td class="ex" data-s="2">0CD53CE7739F</td><td class="ex" data-s="2">Newton AIR<br>6C 2.1"</td><td class="ex" data-s="3">DKE (OEM)</td><td class="ex" data-s="3">2026-11-01</td><td class="ex" data-s="3">0263N00092</td><td class="ex" data-s="3">I263680445</td><td class="ex" data-s="4">EHQ20260827001</td><td class="ex" data-s="4">EHQ</td><td class="ex" data-s="5">EU-AST-GER-<br>ROSS-24SEWS</td><td class="ex" data-s="6">30545</td><td class="ex" data-s="7">YYYY-MM-DD<br>00:00:00</td><td class="ex" data-s="7">0F~1F</td><td class="ex" data-s="7">Online /<br>Offline</td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td></tr><tr style="height:38px"><td class="ex" data-s="2"></td><td class="ex" data-s="2"></td><td class="ex" data-s="3">New Face<br>(OEM)</td><td class="ex" data-s="3"></td><td class="ex" data-s="3"></td><td class="ex" data-s="3"></td><td class="ex" data-s="4"></td><td class="ex" data-s="4">ROSSMANN</td><td class="ex" data-s="5"></td><td class="ex" data-s="6"></td><td class="ex" data-s="7"></td><td class="ex" data-s="7"></td><td class="ex" data-s="7"></td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td></tr><tr style="height:38px"><td class="ex" data-s="2"></td><td class="ex" data-s="2"></td><td class="ex" data-s="3">Xingtai<br>(OEM)</td><td class="ex" data-s="3"></td><td class="ex" data-s="3"></td><td class="ex" data-s="3"></td><td class="ex" data-s="4"></td><td class="ex" data-s="4">Disti</td><td class="ex" data-s="5"></td><td class="ex" data-s="6"></td><td class="ex" data-s="7"></td><td class="ex" data-s="7"></td><td class="ex" data-s="7"></td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td></tr></table>
-  <div class="note">※ Box Scan(Whitelist 등록)은 4. 출하 ~ 6. 최종 고객 인도 구간, Box Scan(RMA 등록)은 8. RMA / 재출고 단계에서 수행</div>
+  <div class="hint">▸ <b>제품 이동 단계</b>를 클릭하면 해당 단계의 주요 데이터 · 데이터 예시 · Scan 시점이 하이라이트됩니다 (다시 클릭 시 해제). <button id="reset" class="btn">전체 보기</button></div><div id="lcwrap" style="position:relative"><div id="hlbox"></div><table class="grid" id="lc"><tr style="height:70px"><td class="rh">제품 이동<br>단계</td><td class="stage st0" data-s="1" data-stage="1" colspan="1">1. 발주</td><td class="stage y" data-s="2" data-stage="2" colspan="2">2. 생산</td><td class="stage y" data-s="3" data-stage="3" colspan="4">3. 포장</td><td class="stage y" data-s="4" data-stage="4" colspan="2">4. 출하</td><td class="stage o" data-s="5" data-stage="5" colspan="1">5. 중간 거점<br>도착<br><span class="sm">(법인·창고·<br>유통사·리셀러)</span></td><td class="stage o" data-s="6" data-stage="6" colspan="1">6. 최종<br>고객 인도</td><td class="stage g" data-s="7" data-stage="7" colspan="3">7. 설치 / 운영</td><td class="stage bl" data-s="8" data-stage="8" colspan="4">8. RMA / 재출고</td></tr><tr style="height:70px"><td class="rh">주요 데이터<br>(단계별로 누적)</td><td class="blank" data-s="1" rowspan="4"></td><td class="y" data-s="2">MAC ID</td><td class="y" data-s="2">Product<br>Model</td><td class="y" data-s="3">Production<br>Site</td><td class="y" data-s="3">Production<br>Date</td><td class="y" data-s="3">Outer<br>Box ID</td><td class="y" data-s="3">Inner<br>Box ID</td><td class="y" data-s="4">Invoice<br>No.</td><td class="y" data-s="4">Arrival</td><td class="o" data-s="5 6">Customer<br>Code</td><td class="o" data-s="5 6">Store<br>Code<br>(Optional)</td><td class="g" data-s="7">First<br>Activation</td><td class="g" data-s="7">Battery<br>Status</td><td class="g" data-s="7">Alive<br>Status</td><td class="bl" data-s="8">RMA<br>No.</td><td class="bl" data-s="8">RMA<br>Received<br>Date</td><td class="bl" data-s="8">RMA<br>Status</td><td class="bl" data-s="8">RMA<br>Completed<br>Date</td></tr><tr style="height:56px"><td class="rh" rowspan="3">데이터<br>예시</td><td class="ex" data-s="2">0CD53CE7739F</td><td class="ex" data-s="2">Newton AIR<br>6C 2.1"</td><td class="ex" data-s="3">DKE (OEM)</td><td class="ex" data-s="3">2026-11-01</td><td class="ex" data-s="3">0263N00092</td><td class="ex" data-s="3">I263680445</td><td class="ex" data-s="4">EHQ20260827001</td><td class="ex" data-s="4">EHQ</td><td class="ex" data-s="5 6">EU-AST-GER-<br>ROSS-24SEWS</td><td class="ex" data-s="5 6">30545</td><td class="ex" data-s="7">YYYY-MM-DD<br>00:00:00</td><td class="ex" data-s="7">0F~1F</td><td class="ex" data-s="7">Online /<br>Offline</td><td class="ex" data-s="8">RMA-2611-<br>00123</td><td class="ex" data-s="8">2026-11-05</td><td class="ex" data-s="8">In Repair</td><td class="ex" data-s="8">2026-11-12</td></tr><tr style="height:38px"><td class="ex" data-s="2"></td><td class="ex" data-s="2"></td><td class="ex" data-s="3">New Face<br>(OEM)</td><td class="ex" data-s="3"></td><td class="ex" data-s="3"></td><td class="ex" data-s="3"></td><td class="ex" data-s="4"></td><td class="ex" data-s="4">ROSSMANN</td><td class="ex" data-s="5 6"></td><td class="ex" data-s="5 6"></td><td class="ex" data-s="7"></td><td class="ex" data-s="7"></td><td class="ex" data-s="7"></td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td></tr><tr style="height:38px"><td class="ex" data-s="2"></td><td class="ex" data-s="2"></td><td class="ex" data-s="3">Xingtai<br>(OEM)</td><td class="ex" data-s="3"></td><td class="ex" data-s="3"></td><td class="ex" data-s="3"></td><td class="ex" data-s="4"></td><td class="ex" data-s="4">Disti</td><td class="ex" data-s="5 6"></td><td class="ex" data-s="5 6"></td><td class="ex" data-s="7"></td><td class="ex" data-s="7"></td><td class="ex" data-s="7"></td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td><td class="ex" data-s="8"></td></tr><tr style="height:50px"><td class="rh">Scan 시점</td><td class="" data-s="1"></td><td class="" data-s="2" colspan="2"></td><td class="" data-s="3" colspan="4"></td><td class="scan" data-s="4 5 6" colspan="4">Box Scan (Whitelist 등록)<br><a class="applink" href="https://tree-ego-86859481.figma.site" target="_blank" rel="noopener">Box Scan App ↗</a></td><td class="" data-s="7" colspan="3"></td><td class="scan" data-s="8" colspan="4">Box Scan<br>(RMA 등록)</td></tr></table></div>
+  <div class="note">※ RMA 데이터 예시는 이해를 돕기 위한 임의 값입니다.<br>※ Box Scan(Whitelist 등록)은 4. 출하 ~ 6. 최종 고객 인도 구간, Box Scan(RMA 등록)은 8. RMA / 재출고 단계에서 수행</div>
 </div>
-
 <div class="page">
   <div class="hdr">
     <div><div class="sec">02 · 공유</div><h1>시스템 흐름도 (데이터 이동)</h1></div>
@@ -92,7 +93,7 @@ table.pol td.disc { background:#fff8eb; }
   </div>
   <div class="flowwrap">
     <div class="flowtitle">데이터 통합 및 수명주기 관리</div>
-    <svg viewBox="0 0 1000 300" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, Noto Sans CJK KR, Malgun Gothic, sans-serif">
+    <div style="position:relative"><a class="svgapp" href="https://tree-ego-86859481.figma.site" target="_blank" rel="noopener" title="Box Scan Mobile App 접속"></a><svg viewBox="0 0 1000 300" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, Noto Sans CJK KR, Malgun Gothic, sans-serif">
       <defs>
         <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
         <marker id="ar2" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ea580c"/></marker>
@@ -130,16 +131,16 @@ table.pol td.disc { background:#fff8eb; }
       <rect x="792" y="225" width="150" height="58" rx="6" fill="#eaf2fb" stroke="#5b8fd1" stroke-width="1.5" stroke-dasharray="5,3"/>
       <text x="867" y="250" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1e3a5f">RMA Server</text>
       <text x="867" y="270" text-anchor="middle" font-size="11.5" fill="#1e3a5f">(선택)</text>
-      <a href="https://tree-ego-86859481.figma.site" target="_blank" rel="noopener" style="cursor:pointer">
+      <g>
         <rect x="20" y="196" width="200" height="62" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="1.8"/>
         <text x="120" y="222" text-anchor="middle" font-size="13.5" font-weight="700" fill="#9a3412">Box Scan Mobile App</text>
         <text x="120" y="243" text-anchor="middle" font-size="11.5" fill="#c2410c" text-decoration="underline">접속하기 ↗</text>
-      </a>
+      </g>
       <path d="M220,227 L240,227 L240,170 L370,170 L370,152" stroke="#ea580c" stroke-width="2" stroke-dasharray="6,4" fill="none" marker-end="url(#ar2)"/>
       <text x="120" y="186" text-anchor="middle" font-size="10" fill="#c2410c">Box / MAC Scan · Customer Code 등록</text>
       <line x1="12" y1="288" x2="52" y2="288" stroke="#16a34a" stroke-width="2" stroke-dasharray="6,4"/>
       <text x="58" y="292" font-size="10.5" fill="#4b5563">데이터 이동 (Data Flow)</text>
-    </svg>
+    </svg></div>
   </div>
   <div class="notes">
     <div class="card">
@@ -162,27 +163,42 @@ table.pol td.disc { background:#fff8eb; }
     </div>
   </div>
 </div>
-
 <div class="page">
   <div class="hdr">
     <div><div class="sec">03 · 논의 안건</div><h1>Whitelist 등록을 위한 Box Scan 정책</h1></div>
-    <div class="sub"><a class="applink big" href="https://tree-ego-86859481.figma.site" target="_blank" rel="noopener">Box Scan Mobile App 접속 ↗</a><br>출처: Whitelist_Process.xlsx › Whitelist Tab (17~23행)</div>
+    <div class="sub"><a class="applink big" href="https://tree-ego-86859481.figma.site" target="_blank" rel="noopener">Box Scan Mobile App 접속 ↗</a><br><span class="url">https://tree-ego-86859481.figma.site</span><br>출처: Whitelist_Process.xlsx › Whitelist Tab (17~23행)</div>
   </div>
   <table class="pol"><colgroup><col style="width:13%"><col style="width:9.5%"><col style="width:11%"><col style="width:23%"><col style="width:30%"><col style="width:13.5%"></colgroup><tr><th>Case</th><th>스캔 시점</th><th>장소 및 수행 주체</th><th>처리할 내용</th><th class="disc">논의 필요 사항</th><th class="memo">회의 결정사항 (메모)</th></tr><tr><td class="case">1. PO에 찍힌 그대로 고객 인도</td><td>출하 시<br>(기존과 동일)</td><td>기존 공장 출하 담당</td><td><div class="li"><span class="num">1.</span><span>고객에게 인도될 Box에 PO에 찍힌 최종 고객 Customer Code 할당</span></div></td><td class="disc"><div class="li"><span class="num">1.</span><span>PO 발주 고객, 실제 출하처(법인·총판·SI 파트너 등), Whitelist 최종고객을 각각 구분하여 관리하고, 단계별 식별 코드의 통합 또는 연동 방안 논의</span></div><div class="li"><span class="num">2.</span><span>코드 누락·오류 발생 시 출하 전 정정 절차</span></div></td><td contenteditable="true" title="클릭하여 메모 입력"></td></tr><tr><td class="case">2. 법인·창고를 거쳐 고객 인도</td><td>고객 인도 직전</td><td>각 영업 담당자가 이행 여부 관리</td><td><div class="li"><span class="num">1.</span><span>제공된 App으로 Outer / Inner Box 스캔</span></div><div class="li"><span class="num">2.</span><span>최종 고객의 Customer Code 지정</span></div><div class="li"><span class="num">3.</span><span>Store 지정은 Option (고객이 요구하거나 Shop-in-shop일 경우)</span></div></td><td class="disc"><div class="li"><span class="num">1.</span><span>장소와 관계없이 고객 인도 전 등록</span></div><div class="li"><span class="num">2.</span><span>박스 단위 스캔을 기본으로하고, 법인은 담당자 지정과 등록 이행을 관리</span></div><div class="li"><span class="num">3.</span><span>고객 인도 전 배정 변경이나 오등록이 확인되면, 해당 등록 담당자가 Customer Code와 Store 정보(선택)를 수정하고 변경 이력 관리</span></div></td><td contenteditable="true" title="클릭하여 메모 입력"></td></tr><tr><td class="case">3. 유통사·리셀러를 거쳐 고객 인도</td><td>최종 고객 확정 후<br>고객 인도 직전</td><td>외부 파트너사 담당 법인이 이행 관리</td><td><div class="li"><span class="num">1.</span><span>파트너용 App으로 Box Scan 및 최종 고객의 Customer Code 등록</span></div></td><td class="disc"><div class="li"><span class="num">1.</span><span>외부 채널에도 고객 인도 직전 Whitelist 등록</span></div><div class="li"><span class="num">2.</span><span>법인이 유통사·총판 등에 정책을 안내하고 실제 이행되도록 관리</span></div></td><td contenteditable="true" title="클릭하여 메모 입력"></td></tr><tr><td class="case">4. 법인·본사에서 수령 후 낱개로 분할·배분</td><td>고객 인도 직전</td><td>각 영업 담당자가 이행 여부 관리</td><td><div class="li"><span class="num">1.</span><span>Inner Box를 개봉해 인도할 개별 Label의 MAC 스캔 → Customer Code 지정</span></div><div class="li"><span class="num">2.</span><span>Store 지정은 Option (고객이 요구하거나 Shop-in-shop일 경우)</span></div></td><td class="disc"><div class="li"><span class="num">1.</span><span>낱개 인도분도 개별 스캔 후 Whitelist 등록 완료 후 출하</span></div><div class="li"><span class="num">2.</span><span>Central Server에 저장된 원천 데이터의 Inner Box별 MAC의 최종 고객 정보 할당과 Whitelist 등록 여부(Y/N) 조회 가능한 인터페이스 제공</span></div><div class="li"><span class="num">3.</span><span>낱개를 고객에게 인도하는 Box는 Central Server에서 관리하지 않음</span></div></td><td contenteditable="true" title="클릭하여 메모 입력"></td></tr><tr><td class="case">5. 설치 현장에서 누락된 Label 식별</td><td>설치 중 Activation이 되지 않는 경우</td><td>설치 현장 AE / SI</td><td><div class="li"><span class="num">1.</span><span>개별 MAC 스캔 후 Customer Code 지정</span></div><div class="li"><span class="num">2.</span><span>Store 지정은 Option (고객이 요구하거나 Shop-in-shop일 경우)</span></div></td><td class="disc"><div class="li"><span class="num">1.</span><span>현장 설치 AE·SI에 등록 권한 부여</span></div><div class="li"><span class="num">2.</span><span>누락 제품은 현장에서 보완하고, 정상 등록분은 재스캔하지 않음</span></div></td><td contenteditable="true" title="클릭하여 메모 입력"></td></tr></table>
 </div>
 <script>
-const t=document.getElementById('lc');
-function clearSel(){delete t.dataset.cur;t.classList.remove('sel');t.querySelectorAll('td').forEach(td=>td.classList.remove('hl','dim','on'))}
+const t=document.getElementById('lc');const wrap=document.getElementById('lcwrap');const box=document.getElementById('hlbox');
+function clearSel(){box.style.display='none';delete t.dataset.cur;t.classList.remove('sel');t.querySelectorAll('td').forEach(td=>td.classList.remove('hl','dim','on'))}
 function sel(n){
   if(t.dataset.cur==n){clearSel();return}
   t.dataset.cur=n;t.classList.add('sel');
   t.querySelectorAll('td[data-s]').forEach(td=>{
     const on=td.dataset.s.split(' ').includes(String(n));
     td.classList.toggle('hl',on);td.classList.toggle('dim',!on);
-    if(td.classList.contains('stage'))td.classList.toggle('on',on);
   });
+  const st=t.querySelector('td.stage[data-stage="'+n+'"]').getBoundingClientRect();
+  const wr=wrap.getBoundingClientRect();
+  const lastRow=t.rows[t.rows.length-1];
+  let L1=st.left,R1=st.right,L2=1e9,R2=-1e9,M=lastRow.getBoundingClientRect().top,B=t.getBoundingClientRect().bottom;
+  t.querySelectorAll('td.hl:not(.blank)').forEach(td=>{const r=td.getBoundingClientRect();
+    if(td.parentElement===lastRow){L2=Math.min(L2,r.left);R2=Math.max(R2,r.right)}else{L1=Math.min(L1,r.left);R1=Math.max(R1,r.right)}});
+  if(L2>R2){L2=L1;R2=R1}
+  const X=v=>(v-wr.left).toFixed(1),Y=v=>(v-wr.top).toFixed(1),T=st.top;
+  const P=[[L1,T],[R1,T],[R1,M],[R2,M],[R2,B],[L2,B],[L2,M],[L1,M],[L1,T]].map(([x,y])=>[x-wr.left,y-wr.top]);
+  const w=3;box.innerHTML='';
+  for(let i=0;i<P.length-1;i++){const [x1,y1]=P[i],[x2,y2]=P[i+1];if(x1===x2&&y1===y2)continue;
+    const d=document.createElement('div');d.className='seg';
+    d.style.left=(Math.min(x1,x2)-w/2)+'px';d.style.top=(Math.min(y1,y2)-w/2)+'px';
+    d.style.width=(Math.abs(x2-x1)+w)+'px';d.style.height=(Math.abs(y2-y1)+w)+'px';box.appendChild(d);}
+  box.style.display='block';
 }
+window.addEventListener('resize',()=>{const n=t.dataset.cur;if(n){delete t.dataset.cur;sel(n)}});
 t.querySelectorAll('td.stage').forEach(td=>td.addEventListener('click',()=>sel(td.dataset.stage)));
 document.getElementById('reset').addEventListener('click',clearSel);
+document.querySelectorAll('a[href*="figma.site"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();const w=window.open(a.href,'_blank','noopener');if(!w)location.href=a.href;}));
 </script>
 </body></html>
