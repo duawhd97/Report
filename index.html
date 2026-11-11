@@ -72,8 +72,19 @@ table.pol td.disc { background:#fff8eb; }
 .req span{color:#7030A0;margin-right:8px}
 .bar{margin-top:8px;background:#1f2a37;color:#fff;border-radius:6px;padding:10px 16px;font-size:12.5pt;font-weight:700;text-align:center}
 .bar em{font-style:normal;color:#fcd34d}
+table.pol td{height:auto;padding:12px 10px;font-size:9.6pt}
+table.dec{width:100%;border-collapse:collapse;table-layout:fixed}
+table.dec th{background:#b45309;color:#fff;font-size:9.5pt;padding:7px;border:1px solid #b45309;text-align:left}
+table.dec th.memo{background:#6b7280;border-color:#6b7280}
+table.dec td{border:1px solid #b7bec8;vertical-align:middle;padding:11px 10px;font-size:10pt;line-height:1.55}
+table.dec td.no{text-align:center;font-size:16pt;font-weight:800;color:#b45309;background:#fff8eb}
+table.dec td.ttl{font-weight:800;font-size:11pt;background:#fff8eb;color:#1f2a37}
+table.dec td.cs{text-align:center;font-weight:700;color:#4b2a7b;font-size:9pt}
+table.dec .why{margin-top:4px;font-size:9pt;color:#6b7280}
+table.dec .flowc{margin-top:6px;display:table;white-space:nowrap;background:#f6f0fb;border:1px solid #7030A0;border-radius:4px;padding:2px 10px;font-weight:800;color:#4b2a7b;font-size:9.5pt}
+table.dec .flowc i{font-style:normal;color:#7030A0;margin:0 4px}
+.sm2{font-weight:400;font-size:8.5pt;color:#6b7280}
 </style></head><body>
-<!-- ============ PAGE 1 : AS-IS ============ -->
 <div class="page">
  <div class="hdr"><div><div class="sec">01 · 배경 (As-Is)</div><h1>고객 요구사항 및 기존 Whitelist 동작</h1></div></div>
  <div class="req">
@@ -139,7 +150,6 @@ table.pol td.disc { background:#fff8eb; }
  <div class="bar">현장 Scan 누락 Tag가 <em>붙었다 떨어지기를 반복</em> → Gateway가 이 처리에 묶여 <em>정상 Tag까지 지연</em></div>
 </div>
 
-<!-- ============ PAGE 2 : TO-BE ============ -->
 <div class="page">
  <div class="hdr"><div><div class="sec">02 · 대응 방안 (To-Be)</div><h1>대응 방안 : 인도 전 사전 등록 + Central 판정</h1></div></div>
 <svg viewBox="0 0 1000 400" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard,Noto Sans CJK KR,Malgun Gothic,sans-serif">
@@ -197,32 +207,25 @@ table.pol td.disc { background:#fff8eb; }
 </svg>
  <div class="bar">인도 전 <em>공장 · 법인 · 총판에서 등록</em>, Gateway는 <em>판정 결과만 적용</em> → 반복 검증 없이 Activation</div>
 </div>
-<!-- ============ PAGE 3 : 확장 방향 ============ -->
+
 <div class="page">
  <div class="hdr"><div><div class="sec">03 · 확장 방향</div><h1>Whitelist에서 ESL 생애주기 관리 서비스로</h1></div></div>
-
 <svg viewBox="0 0 1000 250" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard,Noto Sans CJK KR,Malgun Gothic,sans-serif">
  <defs><marker id="pa" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0L10,5L0,10z" fill="#7030A0"/></marker></defs>
- <!-- 논리 체인 3단 -->
  <g text-anchor="middle">
   <rect x="10" y="20" width="230" height="86" rx="10" fill="#f6f0fb" stroke="#7030A0" stroke-width="2"/>
   <text x="125" y="54" font-size="15.5" font-weight="800" fill="#4b2a7b">전체 Label</text>
   <text x="125" y="78" font-size="15.5" font-weight="800" fill="#4b2a7b">Whitelist 필수 적용</text>
   <text x="125" y="128" font-size="12" fill="#4b5563">Leave된 Label의 재접속 차단</text>
-
   <line x1="244" y1="63" x2="292" y2="63" stroke="#7030A0" stroke-width="3" marker-end="url(#pa)"/>
-
   <rect x="296" y="20" width="230" height="86" rx="10" fill="#f6f0fb" stroke="#7030A0" stroke-width="2"/>
   <text x="411" y="54" font-size="15.5" font-weight="800" fill="#4b2a7b">Central Server에</text>
   <text x="411" y="78" font-size="15.5" font-weight="800" fill="#4b2a7b">생산 MAC 원천 데이터</text>
   <text x="411" y="128" font-size="12" fill="#4b5563">정합성 검증 기준</text>
-
   <line x1="530" y1="63" x2="578" y2="63" stroke="#7030A0" stroke-width="3" marker-end="url(#pa)"/>
-
   <rect x="582" y="20" width="408" height="86" rx="10" fill="#4b2a7b"/>
   <text x="786" y="50" font-size="15.5" font-weight="800" fill="#fff">결과적으로 전 과정 데이터를 관리</text>
  </g>
- <!-- 단계 칩 -->
  <g font-size="12.5" font-weight="800" text-anchor="middle">
   <rect x="596" y="64" width="58" height="28" rx="14" fill="#FFFF00"/><text x="625" y="83">생산</text>
   <rect x="660" y="64" width="58" height="28" rx="14" fill="#FFFF00"/><text x="689" y="83">포장</text>
@@ -232,24 +235,19 @@ table.pol td.disc { background:#fff8eb; }
   <rect x="938" y="64" width="46" height="28" rx="14" fill="#fff" stroke="#8EB4E3" stroke-width="2" stroke-dasharray="4,3"/><text x="961" y="83" fill="#1e3a5f">RMA</text>
  </g>
  <text x="786" y="128" text-anchor="middle" font-size="12" fill="#4b5563">여기에 RMA만 연동하면 → 제품 생애주기 완성</text>
-
- <!-- 하단 결론 -->
  <rect x="10" y="160" width="980" height="72" rx="10" fill="#fff" stroke="#4b2a7b" stroke-width="2"/>
  <text x="500" y="192" text-anchor="middle" font-size="16" font-weight="800" fill="#1f2a37">Whitelist는 단일 기능이 아니라,</text>
  <text x="500" y="218" text-anchor="middle" font-size="16" font-weight="800" fill="#7030A0">ESL 생애주기 관리 서비스의 출발점</text>
 </svg>
-
  <div style="margin-top:12px;font-size:10pt;font-weight:700;color:#4b2a7b">추진 순서</div>
 <svg viewBox="0 0 1000 120" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard,Noto Sans CJK KR,Malgun Gothic,sans-serif">
  <g text-anchor="middle">
   <path d="M10,15 H300 L330,60 L300,105 H10 Z" fill="#a78bfa"/>
   <text x="165" y="50" font-size="13" font-weight="700" fill="#fff">STEP 1</text>
   <text x="165" y="76" font-size="17" font-weight="800" fill="#fff">SaaS Whitelist 적용</text>
-
   <path d="M340,15 H630 L660,60 L630,105 H340 L370,60 Z" fill="#7c3aed"/>
   <text x="505" y="50" font-size="13" font-weight="700" fill="#fff">STEP 2</text>
   <text x="505" y="76" font-size="17" font-weight="800" fill="#fff">On-prem Whitelist 적용</text>
-
   <path d="M670,15 H990 V105 H670 L700,60 Z" fill="#4b2a7b"/>
   <text x="840" y="50" font-size="13" font-weight="700" fill="#fff">STEP 3</text>
   <text x="840" y="76" font-size="17" font-weight="800" fill="#fff">RMA 연동 → ESL Life Cycle 서비스</text>
@@ -276,7 +274,14 @@ table.pol td.disc { background:#fff8eb; }
 </div>
 <div class="page">
   <div class="hdr">
-    <div><div class="sec">05 · 공유</div><h1>시스템 흐름도 (데이터 이동)</h1></div>
+    <div><div class="sec">05 · 공유</div><h1>Whitelist 등록을 위한 Box Scan Case</h1></div>
+    <div class="sub"><a class="applink big" href="https://tree-ego-86859481.figma.site" target="_blank" rel="noopener">Box Scan Mobile App 접속 ↗</a><br><span class="url">https://tree-ego-86859481.figma.site</span><br>출처: Whitelist_Process.xlsx › Whitelist Tab (17~23행)</div>
+  </div>
+  <table class="pol"><colgroup><col style="width:20%"><col style="width:14%"><col style="width:18%"><col style="width:48%"></colgroup><tr><th>Case</th><th>스캔 시점</th><th>장소 및 수행 주체</th><th>처리할 내용</th></tr><tr><td class="case">1. PO에 찍힌 그대로 고객 인도</td><td>출하 시<br>(기존과 동일)</td><td>기존 공장 출하 담당</td><td><div class="li"><span class="num">1.</span><span>고객에게 인도될 Box에 PO에 찍힌 최종 고객 Customer Code 할당</span></div></td></tr><tr><td class="case">2. 법인·창고를 거쳐 고객 인도</td><td>고객 인도 직전</td><td>각 영업 담당자가 이행 여부 관리</td><td><div class="li"><span class="num">1.</span><span>제공된 App으로 Outer / Inner Box 스캔</span></div><div class="li"><span class="num">2.</span><span>최종 고객의 Customer Code 지정</span></div><div class="li"><span class="num">3.</span><span>Store 지정은 Option (고객이 요구하거나 Shop-in-shop일 경우)</span></div></td></tr><tr><td class="case">3. 유통사·리셀러를 거쳐 고객 인도</td><td>최종 고객 확정 후<br>고객 인도 직전</td><td>외부 파트너사 담당 법인이 이행 관리</td><td><div class="li"><span class="num">1.</span><span>파트너용 App으로 Box Scan 및 최종 고객의 Customer Code 등록</span></div></td></tr><tr><td class="case">4. 법인·본사에서 수령 후 낱개로 분할·배분</td><td>고객 인도 직전</td><td>각 영업 담당자가 이행 여부 관리</td><td><div class="li"><span class="num">1.</span><span>Inner Box를 개봉해 인도할 개별 Label의 MAC 스캔 → Customer Code 지정</span></div><div class="li"><span class="num">2.</span><span>Store 지정은 Option (고객이 요구하거나 Shop-in-shop일 경우)</span></div></td></tr><tr><td class="case">5. 설치 현장에서 누락된 Label 식별</td><td>설치 중 Activation이 되지 않는 경우</td><td>설치 현장 AE / SI</td><td><div class="li"><span class="num">1.</span><span>개별 MAC 스캔 후 Customer Code 지정</span></div><div class="li"><span class="num">2.</span><span>Store 지정은 Option (고객이 요구하거나 Shop-in-shop일 경우)</span></div></td></tr></table>
+</div>
+<div class="page">
+  <div class="hdr">
+    <div><div class="sec">06 · 공유</div><h1>시스템 흐름도 (데이터 이동)</h1></div>
     <div class="sub">생산 데이터 → Central Server(Whitelist / Life Cycle) → 고객사 환경 → ESL 단말</div>
   </div>
   <div class="flowwrap">
@@ -353,10 +358,17 @@ table.pol td.disc { background:#fff8eb; }
 </div>
 <div class="page">
   <div class="hdr">
-    <div><div class="sec">06 · 논의 안건</div><h1>Whitelist 등록을 위한 Box Scan 정책</h1></div>
-    <div class="sub"><a class="applink big" href="https://tree-ego-86859481.figma.site" target="_blank" rel="noopener">Box Scan Mobile App 접속 ↗</a><br><span class="url">https://tree-ego-86859481.figma.site</span><br>출처: Whitelist_Process.xlsx › Whitelist Tab (17~23행)</div>
+    <div><div class="sec">07 · 논의 안건</div><h1>Whitelist 운영을 위한 정책 결정 사항</h1></div>
+    <div class="sub">금일 결정 필요 항목 · 관련 Case는 05 참고</div>
   </div>
-  <table class="pol"><colgroup><col style="width:13%"><col style="width:9.5%"><col style="width:11%"><col style="width:23%"><col style="width:30%"><col style="width:13.5%"></colgroup><tr><th>Case</th><th>스캔 시점</th><th>장소 및 수행 주체</th><th>처리할 내용</th><th class="disc">논의 필요 사항</th><th class="memo">회의 결정사항 (메모)</th></tr><tr><td class="case">1. PO에 찍힌 그대로 고객 인도</td><td>출하 시<br>(기존과 동일)</td><td>기존 공장 출하 담당</td><td><div class="li"><span class="num">1.</span><span>고객에게 인도될 Box에 PO에 찍힌 최종 고객 Customer Code 할당</span></div></td><td class="disc"><div class="li"><span class="num">1.</span><span>PO 발주 고객, 실제 출하처(법인·총판·SI 파트너 등), Whitelist 최종고객을 각각 구분하여 관리하고, 단계별 식별 코드의 통합 또는 연동 방안 논의</span></div><div class="li"><span class="num">2.</span><span>코드 누락·오류 발생 시 출하 전 정정 절차</span></div></td><td contenteditable="true" title="클릭하여 메모 입력"></td></tr><tr><td class="case">2. 법인·창고를 거쳐 고객 인도</td><td>고객 인도 직전</td><td>각 영업 담당자가 이행 여부 관리</td><td><div class="li"><span class="num">1.</span><span>제공된 App으로 Outer / Inner Box 스캔</span></div><div class="li"><span class="num">2.</span><span>최종 고객의 Customer Code 지정</span></div><div class="li"><span class="num">3.</span><span>Store 지정은 Option (고객이 요구하거나 Shop-in-shop일 경우)</span></div></td><td class="disc"><div class="li"><span class="num">1.</span><span>장소와 관계없이 고객 인도 전 등록</span></div><div class="li"><span class="num">2.</span><span>박스 단위 스캔을 기본으로하고, 법인은 담당자 지정과 등록 이행을 관리</span></div><div class="li"><span class="num">3.</span><span>고객 인도 전 배정 변경이나 오등록이 확인되면, 해당 등록 담당자가 Customer Code와 Store 정보(선택)를 수정하고 변경 이력 관리</span></div></td><td contenteditable="true" title="클릭하여 메모 입력"></td></tr><tr><td class="case">3. 유통사·리셀러를 거쳐 고객 인도</td><td>최종 고객 확정 후<br>고객 인도 직전</td><td>외부 파트너사 담당 법인이 이행 관리</td><td><div class="li"><span class="num">1.</span><span>파트너용 App으로 Box Scan 및 최종 고객의 Customer Code 등록</span></div></td><td class="disc"><div class="li"><span class="num">1.</span><span>외부 채널에도 고객 인도 직전 Whitelist 등록</span></div><div class="li"><span class="num">2.</span><span>법인이 유통사·총판 등에 정책을 안내하고 실제 이행되도록 관리</span></div></td><td contenteditable="true" title="클릭하여 메모 입력"></td></tr><tr><td class="case">4. 법인·본사에서 수령 후 낱개로 분할·배분</td><td>고객 인도 직전</td><td>각 영업 담당자가 이행 여부 관리</td><td><div class="li"><span class="num">1.</span><span>Inner Box를 개봉해 인도할 개별 Label의 MAC 스캔 → Customer Code 지정</span></div><div class="li"><span class="num">2.</span><span>Store 지정은 Option (고객이 요구하거나 Shop-in-shop일 경우)</span></div></td><td class="disc"><div class="li"><span class="num">1.</span><span>낱개 인도분도 개별 스캔 후 Whitelist 등록 완료 후 출하</span></div><div class="li"><span class="num">2.</span><span>Central Server에 저장된 원천 데이터의 Inner Box별 MAC의 최종 고객 정보 할당과 Whitelist 등록 여부(Y/N) 조회 가능한 인터페이스 제공</span></div><div class="li"><span class="num">3.</span><span>낱개를 고객에게 인도하는 Box는 Central Server에서 관리하지 않음</span></div></td><td contenteditable="true" title="클릭하여 메모 입력"></td></tr><tr><td class="case">5. 설치 현장에서 누락된 Label 식별</td><td>설치 중 Activation이 되지 않는 경우</td><td>설치 현장 AE / SI</td><td><div class="li"><span class="num">1.</span><span>개별 MAC 스캔 후 Customer Code 지정</span></div><div class="li"><span class="num">2.</span><span>Store 지정은 Option (고객이 요구하거나 Shop-in-shop일 경우)</span></div></td><td class="disc"><div class="li"><span class="num">1.</span><span>현장 설치 AE·SI에 등록 권한 부여</span></div><div class="li"><span class="num">2.</span><span>누락 제품은 현장에서 보완하고, 정상 등록분은 재스캔하지 않음</span></div></td><td contenteditable="true" title="클릭하여 메모 입력"></td></tr></table>
+  <table class="dec"><colgroup><col style="width:4%"><col style="width:17%"><col style="width:38%"><col style="width:11%"><col style="width:30%"></colgroup>
+  <tr><th>#</th><th>결정 항목</th><th>정책 내용 및 사유</th><th>관련 Case</th><th class="memo">회의 결정사항 (메모)</th></tr>
+  <tr><td class="no">1</td><td class="ttl">Full Box 단위 PO·출하</td><td><b>PO 발주와 출하를 Outer / Inner Full Box 단위로 통일</b><div class="why">낱개 출하분을 공장에서 Scan하면 누락 위험 → 발주 단계에서 사전 차단</div></td><td class="cs">Case 1 · 2 · 3</td><td contenteditable="true" title="클릭하여 메모 입력"></td></tr>
+  <tr><td class="no">2</td><td class="ttl">고객 식별자 통일<br><span class="sm2">(Customer Code)</span></td><td><b>PO 발주 · 고객 관리 · Env 서버 고객 관리 식별자를 Customer Code 하나로 통일</b><div class="flowc">PO <i>→</i> MES <i>→</i> Central <i>→</i> Env</div><div class="why">전 구간이 같은 Code로 연결되어야 Whitelist 판정·추적 가능</div></td><td class="cs">전체 Case</td><td contenteditable="true" title="클릭하여 메모 입력"></td></tr>
+  <tr><td class="no">3</td><td class="ttl">인도 직전 Box Scan 의무화</td><td><b>법인 · 파트너사 · 총판은 고객 인도 직전 Box Scan 필수</b><div class="why">이행 여부를 추적·관리할 방안 필요 (관리 주체, 미이행 확인 방법)</div></td><td class="cs">Case 2 · 3</td><td contenteditable="true" title="클릭하여 메모 입력"></td></tr>
+  <tr><td class="no">4</td><td class="ttl">낱개 인도·샘플 출고 시<br>선제적 Whitelist 등록</td><td><b>낱개로 고객 인도 혹은 샘플이 나가야 할 때, 개별 Label을 Scan해 선제적으로 Whitelist 등록 후 인도</b><div class="why">등록 전 인도 금지 → 현장 Activation 실패 방지</div></td><td class="cs">Case 4</td><td contenteditable="true" title="클릭하여 메모 입력"></td></tr>
+  <tr><td class="no">5</td><td class="ttl">현장 누락분 보완 및 교육</td><td><b>설치 중 식별된 누락 Label은 낱개 Scan 후 재부착</b><div class="why">SI Partner · AE 대상 등록 권한 부여 및 교육 필요</div></td><td class="cs">Case 5</td><td contenteditable="true" title="클릭하여 메모 입력"></td></tr>
+  </table>
 </div>
 <script>
 const t=document.getElementById('lc');const wrap=document.getElementById('lcwrap');const box=document.getElementById('hlbox');
